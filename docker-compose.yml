@@ -12,10 +12,19 @@ services:
       - ./docker/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./docker/certs/:/etc/nginx/ssl/live/localhost:ro
 
+  # Optional basic scss support
+  # scss:
+  #   build:
+  #     dockerfile: ./docker/scss.dockerfile
+  #     context: .
+  #   volumes:
+  #     - ./scss:/scss:ro
+  #     - ./src/generated-css:/css:rw
+
   php:
     image: php:fpm-alpine
     volumes:
-      - ./src:/var/www/html:ro
+      - ./src:/var/www/html:rw
 
   mysql:
     image: mysql:latest

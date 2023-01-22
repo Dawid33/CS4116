@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <link href="css/index.css" rel="stylesheet">
+</head>
 
 <body>
-    <?php echo "Hello World from PHP!" ?>
+    <p>
+        <?php echo "Hello World from PHP!" ?>
+    </p>
 </body>
 
 </html>
