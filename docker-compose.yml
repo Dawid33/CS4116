@@ -1,9 +1,9 @@
 version: '3.1'
 
 services:
-  frontend:
+  cs4116-frontend:
     depends_on:
-      - php
+      - cs4116-php
     image: nginx:latest
     ports:
       - "443:443"
@@ -21,12 +21,12 @@ services:
   #     - ./scss:/scss:ro
   #     - ./src/generated-css:/css:rw
 
-  php:
+  cs4116-php:
     image: php:fpm-alpine
     volumes:
       - ./src:/var/www/html:rw
 
-  mysql:
+  cs4116-mysql:
     image: mysql:latest
     container_name: mysql
     ports:
@@ -39,7 +39,7 @@ services:
     volumes:
       - ./docker/mysql-db:/var/lib/mysql
 
-  adminer:
+  cs4116-adminer:
     image: adminer
     restart: always
     ports:
