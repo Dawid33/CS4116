@@ -23,9 +23,11 @@ services:
   #     - ./src/generated-css:/css:rw
 
   cs4116-php:
-    image: php:fpm-alpine
     volumes:
       - ./src:/var/www/html:rw
+    build:
+      context: .
+      dockerfile: docker/php.dockerfile
 
   cs4116-mysql:
     image: mysql:latest
@@ -38,10 +40,11 @@ services:
       - MYSQL_PASSWORD=cs4116
       - MYSQL_ROOT_PASSWORD=cs4116
     volumes:
-      - ./docker/mysql-db:/var/lib/mysql
+      - ./docker:/docker-entrypoint-initdb.d
 
-  cs4116-adminer:
-    image: adminer
-    restart: always
-    ports:
-      - 8080:8080
+
+  # cs4116-adminer:
+  #   image: adminer
+  #   restart: always
+  #   ports:
+  #     - 8080:8080
