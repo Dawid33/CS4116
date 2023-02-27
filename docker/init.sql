@@ -76,6 +76,5 @@ CREATE TABLE `vacancy_skills` (
   `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- INSERT INTO app.users (first_name, , email, password) VALUES ('John', 'Doe', 'jdoe@example.com', 'jdoe');
--- INSERT INTO app.users (first_name, last_name, emlast_nameail, password) VALUES ('test', 'test', 'test@example.com', 'test');
+INSERT INTO cs4116.users (first_name, last_name, email, password, is_admin) VALUES ('John', 'Doe', 'jdoe@example.com', 'jdoe', true);
 

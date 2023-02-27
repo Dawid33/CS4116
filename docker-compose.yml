@@ -25,6 +25,8 @@ services:
   cs4116-php:
     depends_on:
       - cs4116-mysql
+    links:
+      - cs4116-mysql:db
     volumes:
       - ./src:/var/www/html:rw
     build:

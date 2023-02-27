@@ -7,30 +7,23 @@
 <body>
     <p>
         <?php 
-        // Server name must be localhost
-        $servername = "localhost";
-        
-        // In my case, user name will be root
-        $username = "cs4116";
-        
-        // Password is empty
-        $password = "cs4116";
-        
         // Creating a connection
-        $conn = new mysqli("mysql", $username, $password);
+        $conn = new mysqli("db", "cs4116", "cs4116", "cs4116");
         
         // Check connection
         if ($conn->connect_error) {
             die("Connection failure: " . $conn->connect_error);
-        } 
+        }
         
         // Creating a database named geekdata
-        $sql = "SELECT * FROM app.users";
-        if ($conn->query($sql) === TRUE) {
-            echo $conn;
-        } else {
-            echo "Error: " . $conn->error;
-        }
+        $sql = "SELECT * FROM cs4116.users";
+        if ($result = $conn-> query("SELECT * FROM users")) {
+            echo "Returned rows are: " . $result -> num_rows . "</br>";
+            // Free result set
+            while($row = $result->fetch_assoc()) {
+               echo $row["email"];
+            } 
+          }
         
         // Closing connection
         $conn->close();
