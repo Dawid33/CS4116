@@ -23,6 +23,8 @@ services:
   #     - ./src/generated-css:/css:rw
 
   cs4116-php:
+    depends_on:
+      - cs4116-mysql
     volumes:
       - ./src:/var/www/html:rw
     build:
@@ -41,10 +43,3 @@ services:
       - MYSQL_ROOT_PASSWORD=cs4116
     volumes:
       - ./docker:/docker-entrypoint-initdb.d
-
-
-  # cs4116-adminer:
-  #   image: adminer
-  #   restart: always
-  #   ports:
-  #     - 8080:8080

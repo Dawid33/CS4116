@@ -65,7 +65,6 @@ CREATE TABLE cs4116.vacancies (
 ENGINE=InnoDB
 DEFAULT CHARSET=utf8mb4
 COLLATE=utf8mb4_0900_ai_ci;
-DROP TABLE IF EXISTS cs4116.vacancies;
 
 -- cs4116.vacancy_skills definition
 
