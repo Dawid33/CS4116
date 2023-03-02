@@ -12,20 +12,20 @@
         <div class="row">
             <div class="d-flex justify-content-between"> WiredIn
                 <div>
-                    <button type="button" class="btn"> Login </button> 
+                    <button type="button" class="btn_1 btn"> Login </button> 
                 </div>
             </div>
         </div>
         </br>
         <div class="row">
             <div class="d-flex justify-content-center">
-                <button type="button" class="btn btn-outline-light btn-lg" aria-pressed="true"> Company </button>
+                <button type="button" class="btn_2 btn btn-lg"> Company </button>
             </div>
         </div>
         </br>
         <div class="row">
             <div class="d-flex justify-content-center">
-                <button type="button" class="btn btn-outline-light btn-lg" aria-pressed="true"> Company </button>
+                <button type="button" class="btn_2 btn btn-lg"> Company </button>
             </div>
         </div>
     </div>
