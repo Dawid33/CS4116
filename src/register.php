@@ -19,13 +19,13 @@
         </br>
         <div class="row">
             <div class="d-flex justify-content-center">
-                <button type="button" class="btn_2 btn-outline-light btn-lg" aria-pressed="true"> Company </button>
+                <button type="button" class="btn btn-outline-light btn-lg" aria-pressed="true"> Company </button>
             </div>
         </div>
         </br>
         <div class="row">
             <div class="d-flex justify-content-center">
-                <button type="button" class="btn_2 btn-outline-light btn-lg" aria-pressed="true"> Company </button>
+                <button type="button" class="btn btn-outline-light btn-lg" aria-pressed="true"> Company </button>
             </div>
         </div>
     </div>
