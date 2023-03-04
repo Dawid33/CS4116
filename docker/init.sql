@@ -26,7 +26,9 @@ CREATE TABLE `skills` (
   `title` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `description` varchar(100) DEFAULT NULL,
   `skill_id` bigint NOT NULL,
-  PRIMARY KEY (`skill_id`)
+  PRIMARY KEY (`skill_id`),
+  KEY `skills_FK` (`user_id`),
+  CONSTRAINT `skills_FK` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
@@ -115,6 +117,21 @@ CREATE TABLE `vacancy_skills` (
   CONSTRAINT `vacancy_skills_FK` FOREIGN KEY (`skill_id`) REFERENCES `skills` (`skill_id`),
   CONSTRAINT `vacancy_skills_FK_1` FOREIGN KEY (`vacancy_id`) REFERENCES `vacancies` (`vacancy_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- cs4116.qualifications definition
+
+CREATE TABLE `qualifications` (
+  `user_id` bigint NOT NULL,
+  `qualification_id` bigint NOT NULL,
+  `qualification_title` varchar(100) NOT NULL,
+  `qualification_description` text,
+  `qualification_level` varchar(100) NOT NULL,
+  `qualification_year` time NOT NULL,
+  PRIMARY KEY (`qualification_id`),
+  KEY `qualifications_FK` (`user_id`),
+  CONSTRAINT `qualifications_FK` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 
 INSERT INTO cs4116.users (user_id, first_name, last_name, email, password, is_admin) VALUES (11111, 'John', 'Doe', 'jdoe@example.com', 'jdoe', true);
 
