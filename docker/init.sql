@@ -1,37 +1,3 @@
--- cs4116.organisation definition
-
-CREATE TABLE `organisation` (
-  `password` varchar(100) NOT NULL,
-  `org_id` bigint NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `description` text,
-  `phone_number` int NOT NULL,
-  PRIMARY KEY (`org_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-
--- cs4116.organisation_members definition
-
-CREATE TABLE `organisation_members` (
-  `user_id` bigint NOT NULL,
-  `org_id` bigint NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-
--- cs4116.skills definition
-
-CREATE TABLE `skills` (
-  `user_id` bigint NOT NULL,
-  `title` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `description` varchar(100) DEFAULT NULL,
-  `skill_id` bigint NOT NULL,
-  PRIMARY KEY (`skill_id`),
-  KEY `skills_FK` (`user_id`),
-  CONSTRAINT `skills_FK` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-
 -- cs4116.users definition
 
 CREATE TABLE `users` (
@@ -43,6 +9,21 @@ CREATE TABLE `users` (
   `is_admin` tinyint(1) NOT NULL,
   `bio` text,
   PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+-- cs4116.connections definition
+
+CREATE TABLE `connections` (
+  `user_id_first` bigint NOT NULL,
+  `user_id_second` bigint NOT NULL,
+  `conn_id` bigint NOT NULL,
+  `connection_date` timestamp NOT NULL,
+  PRIMARY KEY (`conn_id`),
+  KEY `connections_FK` (`user_id_first`),
+  KEY `connections_FK_1` (`user_id_second`),
+  CONSTRAINT `connections_FK` FOREIGN KEY (`user_id_first`) REFERENCES `users` (`user_id`),
+  CONSTRAINT `connections_FK_1` FOREIGN KEY (`user_id_second`) REFERENCES `users` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
@@ -61,18 +42,47 @@ CREATE TABLE `experience` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
--- cs4116.connections definition
+-- cs4116.organisation definition
 
-CREATE TABLE `connections` (
-  `user_id_first` bigint NOT NULL,
-  `user_id_second` bigint NOT NULL,
-  `conn_id` bigint NOT NULL,
-  `connection_date` timestamp NOT NULL,
-  PRIMARY KEY (`conn_id`),
-  KEY `connections_FK` (`user_id_first`),
-  KEY `connections_FK_1` (`user_id_second`),
-  CONSTRAINT `connections_FK` FOREIGN KEY (`user_id_first`) REFERENCES `users` (`user_id`),
-  CONSTRAINT `connections_FK_1` FOREIGN KEY (`user_id_second`) REFERENCES `users` (`user_id`)
+CREATE TABLE `organisation` (
+  `password` varchar(100) NOT NULL,
+  `org_id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `description` text,
+  `phone_number` int NOT NULL,
+  `user_id` bigint NOT NULL,
+  PRIMARY KEY (`org_id`),
+  KEY `organisation_FK` (`user_id`),
+  CONSTRAINT `organisation_FK` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+-- cs4116.qualifications definition
+
+CREATE TABLE `qualifications` (
+  `user_id` bigint NOT NULL,
+  `qualification_id` bigint NOT NULL,
+  `qualification_title` varchar(100) NOT NULL,
+  `qualification_description` text,
+  `qualification_level` varchar(100) NOT NULL,
+  `qualification_year` time NOT NULL,
+  PRIMARY KEY (`qualification_id`),
+  KEY `qualifications_FK` (`user_id`),
+  CONSTRAINT `qualifications_FK` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+-- cs4116.skills definition
+
+CREATE TABLE `skills` (
+  `user_id` bigint NOT NULL,
+  `title` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `description` varchar(100) DEFAULT NULL,
+  `skill_id` bigint NOT NULL,
+  PRIMARY KEY (`skill_id`),
+  KEY `skills_FK` (`user_id`),
+  CONSTRAINT `skills_FK` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
@@ -118,20 +128,30 @@ CREATE TABLE `vacancy_skills` (
   CONSTRAINT `vacancy_skills_FK_1` FOREIGN KEY (`vacancy_id`) REFERENCES `vacancies` (`vacancy_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- cs4116.qualifications definition
 
-CREATE TABLE `qualifications` (
+-- cs4116.forum definition
+
+CREATE TABLE `forum` (
+  `forum_post_id` bigint NOT NULL,
   `user_id` bigint NOT NULL,
-  `qualification_id` bigint NOT NULL,
-  `qualification_title` varchar(100) NOT NULL,
-  `qualification_description` text,
-  `qualification_level` varchar(100) NOT NULL,
-  `qualification_year` time NOT NULL,
-  PRIMARY KEY (`qualification_id`),
-  KEY `qualifications_FK` (`user_id`),
-  CONSTRAINT `qualifications_FK` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
+  `title` text NOT NULL,
+  `description` text NOT NULL,
+  `date` timestamp NOT NULL,
+  PRIMARY KEY (`forum_post_id`),
+  KEY `forum_FK` (`user_id`),
+  CONSTRAINT `forum_FK` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
-INSERT INTO cs4116.users (user_id, first_name, last_name, email, password, is_admin) VALUES (11111, 'John', 'Doe', 'jdoe@example.com', 'jdoe', true);
+-- cs4116.watchlist definition
 
+CREATE TABLE `watchlist` (
+  `watchlist_item_id` bigint NOT NULL,
+  `user_id` bigint NOT NULL,
+  `vacancy_id` bigint NOT NULL,
+  PRIMARY KEY (`wathlist_item_id`),
+  KEY `watchlist_FK` (`user_id`),
+  KEY `watchlist_FK_1` (`vacancy_id`),
+  CONSTRAINT `watchlist_FK` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
+  CONSTRAINT `watchlist_FK_1` FOREIGN KEY (`vacancy_id`) REFERENCES `vacancies` (`vacancy_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
