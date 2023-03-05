@@ -146,7 +146,7 @@ CREATE TABLE `forum` (
 -- cs4116.watchlist definition
 
 CREATE TABLE `watchlist` (
-  `watchlist_item_id` bigint NOT NULL,
+  `wathlist_item_id` bigint NOT NULL,
   `user_id` bigint NOT NULL,
   `vacancy_id` bigint NOT NULL,
   PRIMARY KEY (`wathlist_item_id`),
