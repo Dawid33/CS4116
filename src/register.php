@@ -17,15 +17,17 @@
             </div>
         </div>
         </br>
+        </br>
         <div class="row">
             <div class="d-flex justify-content-center">
                 <button type="button" class="btn_2 btn btn-lg"> Company </button>
             </div>
         </div>
         </br>
+        </br>
         <div class="row">
             <div class="d-flex justify-content-center">
-                <button type="button" class="btn_2 btn btn-lg"> Company </button>
+                <button type="button" class="btn_2 btn btn-lg"> Individual </button>
             </div>
         </div>
     </div>

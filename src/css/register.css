@@ -1,4 +1,4 @@
-.btn {
+.btn_1 {
     background-color: #242337;
     color: aliceblue;
 }
@@ -6,8 +6,9 @@
 .btn_2 {
     background-color: #E24F3D;
     color: aliceblue;
-    border-style: solid;
-    border-radius: 12px;
+    padding: 20px 40px;
+    font-size: 20px;
+    border-radius: 10px;
 }
 
 .vertical-center {
