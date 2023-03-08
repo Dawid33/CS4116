@@ -12,20 +12,20 @@
         <div class="row">
             <div class="d-flex justify-content-between"> WiredIn
                 <div>
-                    <button type="button" class="btn_1 btn"> Login </button> 
+                    <a href="login.php" class="btn" role="button">Login</a>
                 </div>
             </div>
         </div>
         </br>
         <div class="row">
             <div class="d-flex justify-content-center">
-                <button type="button" class="btn_2 btn btn-lg"> Company </button>
+                <a href="user_registration.php" class="btn_2 btn btn-lg"> Personal </a>
             </div>
         </div>
         </br>
         <div class="row">
             <div class="d-flex justify-content-center">
-                <button type="button" class="btn_2 btn btn-lg"> Company </button>
+                <a href="company_registration.php" class="btn_2 btn btn-lg"> Company </a>
             </div>
         </div>
     </div>
