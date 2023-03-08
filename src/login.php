@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (isset($_SESSION["user"])) {
+   header("Location: index.php");
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,20 +15,55 @@
 <body>
 </br>
     <div class="container">
+    <div class="row">
+            <div class="d-flex justify-content-center"> 
+                <?php
+                    if (isset($_POST["login"])) {
+                        $email = $_POST["email"];
+                        $password = $_POST["password"];
+                        
+                        $conn = new mysqli("db", "cs4116", "cs4116", "cs4116");
+
+                        // Check connection
+                        if ($conn->connect_error) {
+                            die("Connection failure: " . $conn->connect_error);
+                        }
+
+                        $sql = "SELECT * FROM users WHERE email = '$email'";
+                        $result = mysqli_query($conn, $sql);
+                        $user = mysqli_fetch_array($result, MYSQLI_ASSOC);  
+                        
+                        if ($user) {
+                            if ($password == $user["password"]) {
+                                session_start();
+                                $_SESSION["user"] = "yes";
+                                header("Location: index.php");
+                                die();
+                            }else{
+                                echo "<div class='alert alert-danger'>Password does not match</div>";
+                            }
+                        }else{
+                            echo "<div class='alert alert-danger'>Email does not match</div>";
+                        }
+
+                    }
+                ?>
+            </div>
+        </div>
         <div class="row">
-            <div class="d-flex justify-content-between"> WiredIn 
+            <div class="d-flex justify-content-between display-6"> WiredIn 
                 <div> 
                     <a href="register.php" class="btn" role="button">Register</a>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="d-flex justify-content-center">Welcome to the community</div>
+        <div class="row padding">
+            <div class="d-flex justify-content-center display-4">Welcome to the community</div>
         </div>
         </br>
         <div class="row">
             <div class="d-flex justify-content-center"> 
-                <form action="">
+                <form action="login.php" method="post">
                     <div class="form-group">
                         <input type="email" name="email" class="form-control" placeholder="Email"> 
                     </div>
@@ -32,7 +73,7 @@
                     </div>
                     </br>
                     <div class="d-flex justify-content-center">
-                        <button class="btn" type="submit" class="btn">Submit</button>
+                        <input class="btn" type="submit" name="login" value="Login"></input>
                     </div>
                 </form>
             </div>
