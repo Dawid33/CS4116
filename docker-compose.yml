@@ -45,3 +45,11 @@ services:
       - MYSQL_ROOT_PASSWORD=cs4116
     volumes:
       - ./docker:/docker-entrypoint-initdb.d
+
+  adminer:
+    links:
+      - cs4116-mysql:db
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
