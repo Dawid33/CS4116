@@ -3,17 +3,6 @@
     color: aliceblue;
 }
 
-.btn_2 {
-    background-color: #E24F3D;
-    color: aliceblue;
-    border-style: solid;
-    border-radius: 12px;
+.padding {
+    padding: 50px;
 }
-
-.vertical-center {
-    min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
-    min-height: 100vh; /* These two lines are counted as one :-)       */
-  
-    display: flex;
-    align-items: center;
-  }
