@@ -6,13 +6,13 @@
         die("Connection failure: " . $conn->connect_error);
     }
 
-    $sql = "SELECT org_id, title, description FROM vacancies;";
+    $sql = "SELECT org_id, vacancy_id, title, description FROM vacancies;";
     $result = mysqli_query($conn, $sql);
 
     $failed = false;
     if ($result) {
         while ($row = $result->fetch_assoc()) {
-            $title = $row['title'];
+            $title = '<a href="http://' . $_SERVER['SERVER_NAME'] . '/vacancy.php?id=' . $row['vacancy_id'] . '">' . $row['title'] . '</a>';
             $description = $row['description'];
 
             $sql = "SELECT email FROM organisation WHERE org_id = '" . $row['org_id'] . "';";

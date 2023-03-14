@@ -5,6 +5,6 @@
     } 
     $current_user_id = $_SESSION["user"];
 
-    $content_php_file = "index/generate_vacancy_cards.php";
+    $content_php_file = "vacancy/generate_vacancy_card.php";
     include('generators/generic.php')
 ?>
