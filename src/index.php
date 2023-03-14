@@ -38,27 +38,7 @@
             </div>
         </nav>
         <content>
-            <div class="card feed-item">
-                <div class="card-body">
-                    <h5 class="card-title">Job Title</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Organisation</h6>
-                    <p class="card-text">Short job description.</p>
-                </div>
-            </div>
-            <div class="card feed-item">
-                <div class="card-body">
-                    <h5 class="card-title">Job Title</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Organisation</h6>
-                    <p class="card-text">Short job description.</p>
-                </div>
-            </div>
-            <div class="card feed-item">
-                <div class="card-body">
-                    <h5 class="card-title">Job Title</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Organisation</h6>
-                    <p class="card-text">Short job description.</p>
-                </div>
-            </div>
+            <?php include('home/generate_vacancy_cards.php'); ?>
         </content>
         <nav id="nav-friends">
             <div class="card">
