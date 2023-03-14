@@ -133,3 +133,13 @@ INSERT INTO organisation (user_id, org_id, name, email) VALUES (@test_user_id, @
 INSERT INTO vacancies (org_id, status, title, description) VALUES (@test_org_id, true, "Senior Engineer's hair stylist", "Can't work if hair bad.");
 INSERT INTO vacancies (org_id, status, title, description) VALUES (@test_org_id, true, "Coffee Brewer", "The Distinguished and honorable privelege of dispensing the lifeblood of the office to your colleagues.");
 INSERT INTO vacancies (org_id, status, title, description) VALUES (@test_org_id, true, "Keyboard Licker", "Discretion is advised.");
+
+-- Mr.Test's Friends
+
+SET @hjass_user_id := uuid();
+INSERT INTO users (user_id, email, password, first_name, last_name, is_admin) VALUES (@hjass_user_id, "hjass@example.com", "hjass", "Hugh", "Jass", false);
+SET @bdover_user_id := uuid();
+INSERT INTO users (user_id, email, password, first_name, last_name, is_admin) VALUES (@bdover_user_id, "bdover@example.com", "bdover", "Ben", "Dover", false);
+
+INSERT INTO connections (user_id_first, user_id_second) VALUES (@test_user_id, @hjass_user_id);
+INSERT INTO connections (user_id_first, user_id_second) VALUES (@test_user_id, @bdover_user_id);

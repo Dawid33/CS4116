@@ -14,7 +14,6 @@
             $description = $row['description'];
             include('vacancy_card.php');
         }
-        
     } else {
         echo "Cannot find vacancy.";
     }

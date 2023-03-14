@@ -5,7 +5,6 @@
     } 
     $current_user_id = $_SESSION["user"];
 
-    $content_php_file = "index/gen_index_content.php";
-    $head_content = "<link href=\"css/index.css\" rel=\"stylesheet\" type=\"text/css\">";
+    $content_php_file = "gen_user_content.php";
     include('generators/generic.php');
 ?>
