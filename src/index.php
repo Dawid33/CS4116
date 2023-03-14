@@ -4,7 +4,6 @@
        header("Location: login.php");
     } 
     $current_user_id = $_SESSION["user"];
-    print $current_user_id;
 ?>
 
 <!DOCTYPE html>
