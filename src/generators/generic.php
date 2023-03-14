@@ -24,8 +24,6 @@
                         </form>
                     </li>
                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="/index.php">Home</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="#">Forum</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="#">Watchlist</a></li>
                     <li class="nav-item"><a class="nav-link active" href="#">Profile</a></li>
                 </ul>
             </div>
