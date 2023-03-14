@@ -1,19 +1,18 @@
 <?php
+    $errors = array(); 
+    $success;
     if (isset($_POST["submit"])) {
-        $firstname = $_POST["firstname"];
-        $lastname = $_POST["lastname"];
+        $conn = new mysqli("db", "cs4116", "cs4116", "cs4116");
+
+        $firstname =  mysqli_real_escape_string($conn, $_POST["firstname"]);
+        $lastname =  mysqli_real_escape_string($conn, $_POST["lastname"]);
         $email = $_POST["email"];
         $password = $_POST["password"];
-
-        $conn = new mysqli("db", "cs4116", "cs4116", "cs4116");
-        
-        $errors = array(); 
 
         // Check connection
         if ($conn->connect_error) {
             die("Connection failure: " . $conn->connect_error);
         }      
-
 
         if (empty($firstname) || empty($lastname)  || empty($email) || empty($password)) {
             $errors["fieldsValidation"]="All fields are required";
@@ -30,21 +29,15 @@
         $rowCount = mysqli_num_rows($result);
 
         if ($rowCount>0) {
-            array_push($errors,"Email already exists!");
+            $errors["fieldsValidation"]="Email already exists!";
         }
 
-        if (count($errors)>0) {
-            foreach ($errors as  $error) {
-                echo "<div class='alert alert-danger'>$error</div>";
-                
-            }
-        } else {
-        
+        if (count($errors)<=0) {
             $sql_insert= "INSERT INTO users (first_name, last_name, email, password, is_admin, is_banned)
             VALUES ('$firstname', '$lastname', '$email', '$password', false, false)";
 
             if (($conn->query($sql_insert))) {
-                echo "<div class='alert alert-success'>You are registered successfully.</div>";
+                $success = "You are registered successfully.";
             }else {
                 echo $conn->error;
             }
@@ -72,24 +65,23 @@
             </div>
         </div>
         <div class="row padding">
-            <div class="d-flex justify-content-center display-4">Welcome to the community</div>
+            <div class="d-flex justify-content-center display-4">Welcome to the Community</div>
         </div>
         </br>
         <div class="row">
             <div class="d-flex justify-content-center"> 
                 <form action="register.php" method="post">
                     <div class="form-group">
-                        <input type="text" name="firstname" class="form-control" placeholder="First Name"> 
+                        <input type="text" name="firstname" class="form-control" placeholder="First Name" value="<?php echo htmlspecialchars($_POST['firstname'] ?? '', ENT_QUOTES);?>"> 
                     </div>
                     </br>
                     <div class="form-group">
-                        <input type="text" name="lastname" class="form-control" placeholder="Last Name"> 
+                        <input type="text" name="lastname" class="form-control" placeholder="Last Name" value="<?php echo htmlspecialchars($_POST['lastname'] ?? '', ENT_QUOTES);?>"> 
                     </div>
                     </br>
-                    <div class="form-group padding">
-                        <input type="email" name="email" class="form-control" placeholder="Email"> 
+                    <div class="form-group">
+                        <input type="email" name="email" class="form-control" placeholder="Email" value="<?php echo htmlspecialchars($_POST['email'] ?? '', ENT_QUOTES);?>"> 
                     </div>
-                        <?php if(array_key_exists("emailValidation", $errors)){ $err = $errors["emailValidation"]; print "<div class='alert alert-danger'>$err</div>"; }?>
                     </br>
                     <div class="form-group">
                         <input type="password" name="password" class="form-control" placeholder="Password"> 
@@ -98,6 +90,11 @@
                     <div class="d-flex justify-content-center">
                         <input class="btn" type="submit" name="submit" value="Register"></input>
                     </div>
+                    </br>
+                        <?php if(isset($success)){ print "<div class='alert alert-success'>$success</div>"; } ?>
+                        <?php if(array_key_exists("fieldsValidation", $errors)){ $err = $errors["fieldsValidation"]; print "<div class='text-center alert alert-danger'>$err</div>"; }?>
+                        <?php if(array_key_exists("passwordValidation", $errors)){ $err = $errors["passwordValidation"]; print "<div class='text-center alert alert-danger'>$err</div>"; }?>
+                        <?php if(array_key_exists("emailValidation", $errors)){ $err = $errors["emailValidation"]; print "<div class='text-center alert alert-danger>$err</div>"; }?>
                 </form>
             </div>
         </div>

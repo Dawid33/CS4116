@@ -1,3 +1,12 @@
+<?php 
+    session_start();
+    if (!isset($_SESSION["user"])) {
+       header("Location: login.php");
+    } 
+    $current_user_id = $_SESSION["user"];
+    print $current_user_id;
+?>
+
 <!DOCTYPE html>
 <html>
 
