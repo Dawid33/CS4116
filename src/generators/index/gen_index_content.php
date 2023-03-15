@@ -121,11 +121,19 @@
         
                 $sql = "SELECT user_id_second FROM connections WHERE user_id_first = '" . $current_user_id . "';";
                 $result = mysqli_query($conn, $sql);
+                $friend_count = 0;
                 if ($result) {
                     if (mysqli_num_rows($result) == 0) {
                         echo '<li class="list-group-item d-flex justify-content-between align-items-center">You have no friends :(</li>';
                     } else {
                         while ($row = $result->fetch_assoc()) {
+                            if ($friend_count >= 5) {
+                                $friend_name = '<a href="http://' . $_SERVER['SERVER_NAME'] . '/user.php?id=' . $current_user_id . '"> ... </a>';
+                                include('friend.php');
+                                break;
+                            }
+
+                            $friend_count += 1;
                             $sql = "SELECT first_name, last_name FROM users WHERE user_id = '" . $row['user_id_second'] . "';";
                             $friend_name_result = mysqli_query($conn, $sql);
             
