@@ -51,7 +51,7 @@
         <div class="row">
             <div class="d-flex justify-content-between display-6"> WiredIn 
                 <div> 
-                    <a href="register.php" class="btn" role="button">Register</a>
+                    <a href="register.php" class="btn btn-lg" role="button">Register</a>
                 </div>
             </div>
         </div>
@@ -71,7 +71,7 @@
                     </div>
                     </br>
                     <div class="d-flex justify-content-center">
-                        <input class="btn" type="submit" name="login" value="Login"></input>
+                        <input class="btn btn-lg" type="submit" name="login" value="Login"></input>
                     </div>
                     </br>
                         <?php if(array_key_exists("passwordValidation", $login_errors)){ $err = $login_errors["passwordValidation"]; print "<div class='text-center alert alert-danger'>$err</div>"; }?>

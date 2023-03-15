@@ -60,7 +60,7 @@
         <div class="row">
             <div class="d-flex justify-content-between display-6"> WiredIn 
                 <div> 
-                    <a href="login.php" class="btn" role="button">Login</a>
+                    <a href="login.php" class="btn btn-lg" role="button">Login</a>
                 </div>
             </div>
         </div>
@@ -88,7 +88,7 @@
                     </div>
                     </br>
                     <div class="d-flex justify-content-center">
-                        <input class="btn" type="submit" name="submit" value="Register"></input>
+                        <input class="btn btn-lg" type="submit" name="submit" value="Register"></input>
                     </div>
                     </br>
                         <?php if(isset($success)){ print "<div class='alert alert-success'>$success</div>"; } ?>
