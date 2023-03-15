@@ -18,13 +18,13 @@
                 <a class="navbar-brand" href="/index.php">WiredIn</a>
                 <ul class="navbar-nav">
                     <li>
-                        <form class="d-flex" role="search">
+                        <form class="d-flex" role="search" action="search.php" >
                             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                             <button class="btn btn-outline-success" type="submit">Search</button>
                         </form>
                     </li>
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="/index.php">Home</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="#">Profile</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.php">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/user.php?id=<?php print $current_user_id ?>">Profile</a></li>
                 </ul>
             </div>
         </nav>
