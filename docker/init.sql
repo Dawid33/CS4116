@@ -107,6 +107,7 @@ CREATE TABLE `vacancies` (
   `description` text,
   `required_experience` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
   `status` tinyint(1) NOT NULL,
+  `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`vacancy_id`),
   KEY `vacancies_FK` (`org_id`),
   CONSTRAINT `vacancies_FK` FOREIGN KEY (`org_id`) REFERENCES `organisation` (`org_id`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -133,6 +134,11 @@ INSERT INTO organisation (user_id, org_id, name, email) VALUES (@test_user_id, @
 INSERT INTO vacancies (org_id, status, title, description) VALUES (@test_org_id, true, "Senior Engineer's hair stylist", "Can't work if hair bad.");
 INSERT INTO vacancies (org_id, status, title, description) VALUES (@test_org_id, true, "Coffee Brewer", "The Distinguished and honorable privelege of dispensing the lifeblood of the office to your colleagues.");
 INSERT INTO vacancies (org_id, status, title, description) VALUES (@test_org_id, true, "Keyboard Licker", "Discretion is advised.");
+INSERT INTO vacancies (org_id, status, title, description) VALUES (@test_org_id, true, "Office Masseuse", "Writing code is back breaking work after all.");
+INSERT INTO vacancies (org_id, status, title, description) VALUES (@test_org_id, true, "Coffee Grinder", "Role involves chewing coffee into brewable \"bite sized\" chunks. Kinda like those cats in Madagascar.");
+INSERT INTO vacancies (org_id, status, title, description) VALUES (@test_org_id, true, "A Real Bro", "Role involves standing at the door and fist bumping everyone who walks in the door.");
+INSERT INTO vacancies (org_id, status, title, description) VALUES (@test_org_id, true, "Pool Afficionado", "Pool tables in the office aren't getting used so we need someone to make it look like they were a good investment.");
+INSERT INTO vacancies (org_id, status, title, description) VALUES (@test_org_id, true, "Slow Typist", "We need someone to make fun of.");
 
 -- Mr.Test's Friends
 
@@ -143,3 +149,8 @@ INSERT INTO users (user_id, email, password, first_name, last_name, is_admin) VA
 
 INSERT INTO connections (user_id_first, user_id_second) VALUES (@test_user_id, @hjass_user_id);
 INSERT INTO connections (user_id_first, user_id_second) VALUES (@test_user_id, @bdover_user_id);
+
+-- More users
+
+SET @hjass_user_id := uuid();
+INSERT INTO users (user_id, email, password, first_name, last_name, is_admin) VALUES (@hjass_user_id, "hjass@example.com", "hjass", "Hugh", "Jass", false);

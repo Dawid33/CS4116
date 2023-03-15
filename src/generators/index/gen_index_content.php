@@ -7,8 +7,64 @@
             die("Connection failure: " . $conn->connect_error);
         }
 
-        $sql = "SELECT org_id, vacancy_id, title, description FROM vacancies;";
-        $result = mysqli_query($conn, $sql);
+        // TODO: Rewrite this Pagination class because I copied it 
+        // verbatim from stack overflow - Dawid
+        class Pagination
+        {
+            public $cur_page;
+            public $total;
+            public $per_page;
+
+            function __construct($cur_page, $total, $per_page)
+            {
+                $this->cur_page = $cur_page;
+                $this->total = $total;
+                $this->per_page = $per_page;
+            }
+
+            function getTotalPage(){
+                return ceil($this->total / $this->per_page);
+            }
+
+            function hasPrevPage(){
+                if($this->cur_page > 1){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+
+            function hasNextPage(){
+                if($this->cur_page < $this->getTotalPage()){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+
+            function offSet(){
+                return ($this->cur_page - 1) * $this->per_page;
+            }
+        }
+
+        $query = "SELECT COUNT(*) FROM vacancies;";
+        $row_count_result = mysqli_query($conn, $query);
+        
+        $total = intval($row_count_result->fetch_assoc()["COUNT(*)"]);
+        $per_page = 5;
+        if ($_GET['page']) {
+            $cur_page = $_GET['page'];
+        } else {
+            $cur_page = 1;    
+        }
+        
+
+        $pagination = new Pagination($cur_page, $total, $per_page);
+        $offset = $pagination->offSet();
+        $query = "SELECT org_id, vacancy_id, title, creation_date, description FROM vacancies ORDER BY creation_date ASC LIMIT {$offset}, {$per_page}";
+        $result = mysqli_query($conn, $query);
 
         $failed = false;
         if ($result) {
@@ -35,6 +91,18 @@
             echo "<div class='alert alert-danger'>Cannot fetch vacancies</div>";
         }
     ?>
+    <div id="page-button-container">
+        <?php
+            if ($cur_page > 1) {
+                print "<a href=/index.php?page=" . ($cur_page - 1) . "> Previous </a></span>";
+            }
+            print "<p> {$cur_page} </p>";
+
+            if ($pagination->hasNextPage()) {
+                print "<a href=/index.php?page=" . ($cur_page + 1) . "> Next </a>";
+            }
+        ?>
+    </div>
 </content>
 
 <div id="nav-friends">
@@ -75,16 +143,3 @@
         </ul>
     </div>
 </div>
-
-<!-- <li class="list-group-item d-flex justify-content-between align-items-center">
-    A list item
-    <span class="badge bg-primary rounded-pill">14</span>
-</li>
-<li class="list-group-item d-flex justify-content-between align-items-center">
-    A second list item
-    <span class="badge bg-primary rounded-pill">2</span>
-</li>
-<li class="list-group-item d-flex justify-content-between align-items-center">
-    A third list item
-    <span class="badge bg-primary rounded-pill">1</span>
-</li> -->

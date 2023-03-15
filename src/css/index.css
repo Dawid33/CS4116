@@ -39,3 +39,15 @@ content {
 #nav-friends > ul > li > .badge{
     background-color: blue;
 }
+
+#page-button-container {
+    width: max-content;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+}
+
+#page-button-container > p,
+#page-button-container > a {
+    padding: 1em;
+}
