@@ -19,7 +19,7 @@
                 <ul class="navbar-nav">
                     <li>
                         <form class="d-flex" role="search" action="search.php" >
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search-term">
                             <button class="btn btn-outline-success" type="submit">Search</button>
                         </form>
                     </li>
@@ -35,5 +35,6 @@
             <p class="card-text">This is the footer.</p>
         </footer>
     </div>
+    <?php print $js_body; ?>
 </body>
 </html>
