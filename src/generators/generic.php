@@ -25,6 +25,7 @@
                     </li>
                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.php">Home</a></li>
                     <li class="nav-item"><a class="nav-link active" href="/user.php?id=<?php print $current_user_id ?>">Profile</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="logout.php">Logout</a></li>
                 </ul>
             </div>
         </nav>

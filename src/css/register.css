@@ -3,6 +3,10 @@
     color: aliceblue;
 }
 
+body {
+    background-color: #F4EDE6;;
+}
+
 .padding {
     padding: 50px;
 }
