@@ -69,14 +69,14 @@
         $failed = false;
         if ($result) {
             while ($row = $result->fetch_assoc()) {
-                $title = '<a href="http://' . $_SERVER['SERVER_NAME'] . '/vacancy.php?id=' . $row['vacancy_id'] . '">' . $row['title'] . '</a>';
+                $title = '<a href="/vacancy.php?id=' . $row['vacancy_id'] . '">' . $row['title'] . '</a>';
                 $description = $row['description'];
 
                 $sql = "SELECT name FROM organisation WHERE org_id = '" . $row['org_id'] . "';";
                 $org_name_result = mysqli_query($conn, $sql);
 
                 if ($org_name_result) {
-                    $org_name = '<a href="http://' . $_SERVER['SERVER_NAME'] . '/company.php?id=' . $row['vacancy_id'] . '">' . $org_name_result->fetch_assoc()['name'] . '</a>';
+                    $org_name = '<a href="/company.php?id=' . $row['vacancy_id'] . '">' . $org_name_result->fetch_assoc()['name'] . '</a>';
                     include('vacancy_card.php');
                 } else {
                     $failed = true;
@@ -128,7 +128,7 @@
                     } else {
                         while ($row = $result->fetch_assoc()) {
                             if ($friend_count >= 5) {
-                                $friend_name = '<a href="http://' . $_SERVER['SERVER_NAME'] . '/user.php?id=' . $current_user_id . '"> ... </a>';
+                                $friend_name = '<a href="/user.php?id=' . $current_user_id . '"> ... </a>';
                                 include('friend.php');
                                 break;
                             }
@@ -139,7 +139,7 @@
             
                             if ($friend_name_result) {
                                 $friend_row = $friend_name_result->fetch_assoc();
-                                $friend_name = '<a href="http://' . $_SERVER['SERVER_NAME'] . '/user.php?id=' . $row['user_id_second'] . '">' . $friend_row['first_name'] . " " . $friend_row['last_name'] . '</a>';
+                                $friend_name = '<a href="/user.php?id=' . $row['user_id_second'] . '">' . $friend_row['first_name'] . " " . $friend_row['last_name'] . '</a>';
                                 include('friend.php');
                             } else {
                                 echo "<div class='alert alert-danger'>Cannot fetch vacancies</div>";

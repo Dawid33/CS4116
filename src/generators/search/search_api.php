@@ -17,7 +17,7 @@
         $result = mysqli_query($conn, $sql);
 
         while($row = $result->fetch_assoc()) {
-            $title = '<a href="http://' . $_SERVER['SERVER_NAME'] . '/user.php?id=' . $row['user_id'] . '">' . $row['first_name'] . " " . $row["last_name"] . '</a>';
+            $title = '<a href="/user.php?id=' . $row['user_id'] . '">' . $row['first_name'] . " " . $row["last_name"] . '</a>';
             include('search_card.php');
         }
     } elseif ($search_type == "vacancies") {
@@ -25,7 +25,7 @@
         $result = mysqli_query($conn, $sql);
 
         while($row = $result->fetch_assoc()) {
-            $title = '<a href="http://' . $_SERVER['SERVER_NAME'] . '/vacancy.php?id=' . $row['vacancy_id'] . '">' . $row['title'] . '</a>';
+            $title = '<a href="/vacancy.php?id=' . $row['vacancy_id'] . '">' . $row['title'] . '</a>';
             $description = $row['description'];
             include('search_card.php');
         }
@@ -34,7 +34,7 @@
         $result = mysqli_query($conn, $sql);
 
         while($row = $result->fetch_assoc()) {
-            $title = '<a href="http://' . $_SERVER['SERVER_NAME'] . '/company.php?id=' . $row['org_id'] . '">' . $row['name'] . '</a>';
+            $title = '<a href="/company.php?id=' . $row['org_id'] . '">' . $row['name'] . '</a>';
             include('search_card.php');
         }
     }
