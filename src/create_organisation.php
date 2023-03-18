@@ -5,9 +5,7 @@
     } 
     $current_user_id = $_SESSION["user"];
 
-    $org_errors = array(); 
     if (isset($_POST["create"])) {
-        $action = "index.php";
         $conn = new mysqli("db", "cs4116", "cs4116", "cs4116");
 
         // Check connection
@@ -20,21 +18,24 @@
         $description = mysqli_real_escape_string($conn, $_POST["description"]);
         $address = mysqli_real_escape_string($conn, $_POST["address"]);   
 
-        if (empty($company_name) || empty($email)  || empty($address) || empty($description)) {
-            $org_errors["fieldsValidation"]="All fields are required";
-            $action = "create_organisation.php";
+        if (empty($company_name) || empty($email) || empty($address) || empty($description)) {
+            $error=true;
+        }else{
+            $error=false;
         }
 
-        if (count($org_errors)==0) {
+        if (!$error) {
             $sql_insert= "INSERT INTO organisation (user_id, name, email, address, description)
             VALUES ('$current_user_id', '$company_name', '$email', '$address', '$description')";
 
             if (($conn->query($sql_insert))) {
-                echo "Success";
+                header("Location: index.php");
             }else {
-                echo "No Success";
                 echo $conn->error;
             }
+        }else{
+            $_SESSION["org_create_error"]=$org_error;
+            header("Location: create_organisation.php?error=" . "error");
         }
         $conn->close();
     }
@@ -50,6 +51,7 @@
 
 <body>
 </br>
+<!-- action="index.php" -->
     <div class="container">
         <div class="row">
             <div class="d-flex justify-content-between display-6"> WiredIn 
@@ -59,12 +61,12 @@
             </div>
         </div>
         <div class="row padding">
-            <div class="d-flex justify-content-center display-4">Create Organisation Profile</div>
+            <div class="d-flex justify-content-center display-5">Create Organisation Profile</div>
         </div>
         </br>
         <div class="row">
             <div class= "d-md-flex justify-content-center"> 
-                <form action="index.php" method="post">
+                <form method="post">
                     <div class="form-group">
                         <input type="text" name="company_name" class="form-control" placeholder="Company Name" value="<?php echo htmlspecialchars($_POST['company_name'] ?? '', ENT_QUOTES);?>">
                     </div>
@@ -85,7 +87,7 @@
                         <input class="btn btn-lg" type="submit" name="create" value="Create"></input>
                     </div>
                     </br>
-                    <?php if(array_key_exists("fieldsValidation", $org_errors)){ $err = $org_errors["fieldsValidation"]; print "<div class='text-center alert alert-danger'>$err</div>"; }?>
+                    <?php if(isset($_GET['error'])){ print "<div class='text-center alert alert-danger'>All fields are required</div>"; }?>
                 </form>
             </div>
         </div>

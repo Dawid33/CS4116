@@ -39,7 +39,7 @@
                             if ($friend_name_result) {
                                 $friend_row = $friend_name_result->fetch_assoc();
                                 $friend_name = '<a href="/user.php?id=' . $row['user_id_second'] . '">' . $friend_row['first_name'] . " " . $friend_row['last_name'] . '</a>';
-                                include('friend.php');
+                                include('index/friend.php');
                             } else {
                                 echo "<div class='alert alert-danger'>Cannot fetch vacancies</div>";
                             }
