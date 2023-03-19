@@ -80,7 +80,7 @@
                     </div>
                     </br>
                     <div class="form-group">
-                        <textarea class="form-control" name="description" placeholder="Description" rows="2"><?php echo htmlspecialchars($_POST['description'] ?? '', ENT_QUOTES);?></textarea> 
+                        <textarea class="form-control" name="description" placeholder="Description" rows="2"></textarea> 
                     </div>
                     </br>
                     <div class="d-flex justify-content-center">

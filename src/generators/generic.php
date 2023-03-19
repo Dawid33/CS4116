@@ -23,7 +23,7 @@
                             <button class="btn btn-outline-success" type="submit">Search</button>
                         </form>
                     </li>
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.php">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="index.php">Home</a></li>
                     <li class="nav-item"><a class="nav-link active" href="/user.php?id=<?php print $current_user_id ?>">Profile</a></li>
                     <li class="nav-item"><a class="nav-link active" href="logout.php">Logout</a></li>
                 </ul>
@@ -32,9 +32,9 @@
         <div id="content-container">
             <?php include($content_php_file); ?>
         </div>
-        <footer class="card">
+        <!-- <footer class="card">
             <p class="card-text">This is the footer.</p>
-        </footer>
+        </footer> -->
     </div>
     <?php print $js_body; ?>
 </body>
