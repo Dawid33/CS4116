@@ -18,17 +18,17 @@
     <div class="row">
         <div class="col">
             <div class="row">
-                <div class="col-5">
+                <div class="col-7">
                     <div class="card feed-item">
                         <div class="card-body">
                             <h5 class="card-title">About</h5>
-                            <p>Name: <?php print $user_details["first_name"] ?></p>
-                            <p>Bio: <?php print $user_details["bio"]?></p>
+                            <p class="card-text">Name:  <?php print $user_details["first_name"] ?> <?php print $user_details["last_name"] ?></p>
+                            <p class="card-text">Bio: <?php print $user_details["bio"]?></p>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-7">
+                <div class="col-5">
                     <div class="card feed-item">
                         <div class="card-body">
                             <h5 class="card-title">Skills</h5>
@@ -36,7 +36,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row mt-4">
                 <div class="col">
                     <div class="card feed-item">
                         <div class="card-body">
@@ -97,3 +97,9 @@
         </div>
     </div>
 </container>
+
+<style>
+    /* .padding-top {
+        s
+    } */
+</style>
