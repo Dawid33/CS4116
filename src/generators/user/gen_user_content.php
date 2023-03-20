@@ -20,7 +20,10 @@
             <div class="row">
                 <div class="col-7">
                     <div class="card feed-item">
-                        <div class="card-body">
+                        <div class="card">
+                            <div class="card-header">
+                            About 
+                            </div>
                             <h5 class="card-title d-flex justify-content-between">About
                                 <?php if($user_id == $_SESSION["user"]) print '<a href="edit_user.php" type="button" class="btn btn-sm btn-primary">Edit</a>' ?>
                             </h5>
@@ -34,7 +37,7 @@
                     <div class="card feed-item">
                         <div class="card">
                             <div class="card-header">
-                            Skills
+                            Skills 
                             </div>
                             <?php
                                 $user_id = $_GET["id"];
@@ -87,7 +90,7 @@
                                 if ($result == false) {
                                     echo "Database error.";
                                 } elseif ($result->num_rows == 0) {
-                                    echo "No qualificatoins supplied.";
+                                    echo "No qualifications supplied.";
                                 } while ($row = $result->fetch_assoc()) {
                                     $title = $row["qualification_title"]; 
                                     $description = $row["qualification_description"]; 
