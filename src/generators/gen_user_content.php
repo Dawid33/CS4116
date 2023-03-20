@@ -21,9 +21,11 @@
                 <div class="col-7">
                     <div class="card feed-item">
                         <div class="card-body">
-                            <h5 class="card-title">About</h5>
+                            <h5 class="card-title d-flex justify-content-between">About
+                                <?php if($user_id == $_SESSION["user"]) print '<a href="edit_user.php" type="button" class="btn btn-sm btn-primary">Edit</a>' ?>
+                            </h5>
                             <p class="card-text">Name:  <?php print $user_details["first_name"] ?> <?php print $user_details["last_name"] ?></p>
-                            <p class="card-text">Bio: <?php print $user_details["bio"]?></p>
+                            <p class="card-text">Bio: <?php echo $user_details["bio"] ?></p>
                         </div>
                     </div>
                 </div>
@@ -97,7 +99,6 @@
         </div>
     </div>
 </container>
-
 <style>
     /* .padding-top {
         s
