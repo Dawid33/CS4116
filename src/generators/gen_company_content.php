@@ -11,7 +11,7 @@ $conn = new mysqli("db", "cs4116", "cs4116", "cs4116");
             die("Connection failure: " . $conn->connect_error);
         }
 
-        $sql = "SELECT name FROM organisation WHERE user_id = '" . $current_user_id . "';";
+        $sql = "SELECT name FROM organisation WHERE org_id = '" . $_GET['id'] . "';";
         $result = $conn->query($sql);
 
  while($row = $result->fetch_assoc())
@@ -20,7 +20,7 @@ $conn = new mysqli("db", "cs4116", "cs4116", "cs4116");
   }
   ?>
    </h5>
-    </div>
+</div>
 </div>
 <div class="card feed-item col">
     <div class="card-body">
@@ -32,13 +32,13 @@ $conn = new mysqli("db", "cs4116", "cs4116", "cs4116");
             die("Connection failure: " . $conn->connect_error);
         }
 
-        $sql = "SELECT description FROM organisation WHERE user_id = '" . $current_user_id . "';";
+        $sql = "SELECT description FROM organisation WHERE org_id = '" . $_GET['id'] . "';";
         $result = $conn->query($sql);
 
  while($row = $result->fetch_assoc())
  {
     print "{$row["description"]}";
-  }
+}
   ?>
     </p>
     </div>
@@ -52,7 +52,7 @@ $conn = new mysqli("db", "cs4116", "cs4116", "cs4116");
             die("Connection failure: " . $conn->connect_error);
         }
 
-        $sql = "SELECT * FROM vacancies ORDER BY creation_date";
+        $sql = "SELECT * FROM vacancies WHERE org_id = '" . $_GET['id'] . "' ORDER BY creation_date";
         $result = $conn->query($sql);
 
  while($row = $result->fetch_assoc()) {
