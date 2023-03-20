@@ -19,7 +19,7 @@ if ($conn->connect_error) {
 }
 
 if ($search_type == "users") {
-    $sql = "SELECT * FROM users WHERE first_name LIKE '%" . $search_term . "%';";
+    $sql = "SELECT * FROM users WHERE first_name LIKE '%" . $search_term . "%' OR last_name LIKE '%" . $search_term . "%'";
     $result = mysqli_query($conn, $sql);
 
     if ($result == false) {
@@ -30,8 +30,31 @@ if ($search_type == "users") {
         include('search_card.php');
     } else {
         while ($row = $result->fetch_assoc()) {
-            $title = '<a href="/user.php?id=' . $row['user_id'] . '">' . $row['first_name'] . " " . $row["last_name"] . '</a>';
-            include('search_card.php');
+            // Check whether vacancy conforms to skill search params.
+            $sql = "SELECT * FROM user_skills WHERE user_id= '" . $row['user_id'] . "';";
+            $vacancy_skills = mysqli_query($conn, $sql);
+
+            $has_failed = true;
+            if ($vacancy_skills == false || sizeof($skill_params) == 0) {
+                $has_failed = false;
+            } else {
+                while ($vac_skill_row = $vacancy_skills->fetch_assoc()) {
+                    foreach ($skill_params as $_ => $param) {
+                        if (strcmp($vac_skill_row['skill_id'], $param) == 0) {
+                            $has_failed = false;
+                            break;
+                        }
+                    }
+                    if (!$has_failed) {
+                        break;
+                    }
+                }
+            }
+
+            if (!$has_failed) {
+                $title = '<a href="/user.php?id=' . $row['user_id'] . '">' . $row['first_name'] . " " . $row["last_name"] . '</a>';
+                include('search_card.php');
+            }
         }
     }
 } elseif ($search_type == "vacancies") {

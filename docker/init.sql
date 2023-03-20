@@ -174,4 +174,5 @@ INSERT INTO user_skills (user_id, skill_id) VALUES (@test_user_id, @cpp_master_i
 
 INSERT INTO vacancy_skills (vacancy_id, skill_id) VALUES (@vacancy_1, @driver_license_id);
 INSERT INTO vacancy_skills (vacancy_id, skill_id) VALUES (@vacancy_1, @cpp_master_id);
+
 INSERT INTO vacancy_skills (vacancy_id, skill_id) VALUES (@vacancy_2, @cpp_master_id);
