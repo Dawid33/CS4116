@@ -46,10 +46,10 @@ services:
     volumes:
       - ./docker:/docker-entrypoint-initdb.d
 
-  adminer:
-    links:
-      - cs4116-mysql:db
-    image: adminer
-    restart: always
-    ports:
-      - 8080:8080
+  # adminer:
+  #   links:
+  #     - cs4116-mysql:db
+  #   image: adminer
+  #   restart: always
+  #   ports:
+  #     - 8080:8080

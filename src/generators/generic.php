@@ -17,24 +17,16 @@
             <div class="container-fluid">
                 <a class="navbar-brand" href="/index.php">WiredIn</a>
                 <ul class="navbar-nav">
-                    <li>
-                        <form class="d-flex" role="search" action="search.php" >
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search-term">
-                            <button class="btn btn-outline-success" type="submit">Search</button>
-                        </form>
-                    </li>
-                    <li class="nav-item"><a class="nav-link active" href="index.php">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/search.php">Search</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/index.php">Home</a></li>
                     <li class="nav-item"><a class="nav-link active" href="/user.php?id=<?php print $current_user_id ?>">Profile</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="logout.php">Logout</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/logout.php">Logout</a></li>
                 </ul>
             </div>
         </nav>
         <div id="content-container">
             <?php include($content_php_file); ?>
         </div>
-        <!-- <footer class="card">
-            <p class="card-text">This is the footer.</p>
-        </footer> -->
     </div>
     <?php print $js_body; ?>
 </body>

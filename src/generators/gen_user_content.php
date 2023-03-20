@@ -2,13 +2,13 @@
     $user_id = $_GET["id"];
     $conn = new mysqli("db", "cs4116", "cs4116", "cs4116");
 
-        if ($conn->connect_error) {
-            die("Connection failure: " . $conn->connect_error);
-        }
+    if ($conn->connect_error) {
+        die("Connection failure: " . $conn->connect_error);
+    }
 
-        $sql = "SELECT * FROM users WHERE user_id = '$user_id'";
-        $result = mysqli_query($conn, $sql);
-        $user_details = mysqli_fetch_array($result, MYSQLI_ASSOC);  
+    $sql = "SELECT * FROM users WHERE user_id = '$user_id'";
+    $result = mysqli_query($conn, $sql);
+    $user_details = mysqli_fetch_array($result, MYSQLI_ASSOC);  
 
     $conn->close();
 
