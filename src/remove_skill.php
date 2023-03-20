@@ -11,7 +11,7 @@
     $sql_insert = "DELETE FROM user_skills WHERE user_skill_id='$id';";
 
     if (($conn->query($sql_insert))) {
-        header("Location: user.php?id=$user_id");
+        header("Location: user.php?id=" . $user_id);
     }else {
         echo $conn->error;
     }
