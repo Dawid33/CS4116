@@ -127,7 +127,8 @@
     </div>
 </container>
 <style>
-    /* .padding-top {
-        s
-    } */
+    .btn {
+        background-color: #242337;
+        color: aliceblue;
+    }
 </style>

@@ -16,5 +16,5 @@
         </select>
     </label>
     <input style="display:none" name="user_id" value="<?php echo $current_user_id ?>">
-    <button type="submit" class="btn btn-primary"> Submit </button>
+    <button type="submit" class="btn btn-sm btn-primary"> Submit </button>
 </form>
