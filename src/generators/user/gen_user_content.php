@@ -40,7 +40,7 @@
                                     die("Connection failure: " . $conn->connect_error);
                                 }
 
-                                $sql = "SELECT user_id, skill_id FROM user_skills WHERE user_id = '$current_user_id'";
+                                $sql = "SELECT * FROM user_skills WHERE user_id = '$user_id'";
                                 $result = mysqli_query($conn, $sql);
                                 if ($result == false) {
                                     echo "Database error.";
@@ -50,16 +50,30 @@
                                     $sql = "SELECT title, skill_id FROM skills WHERE skill_id = '" . $row["skill_id"] . "'";
                                     $skill_result = mysqli_query($conn, $sql);
                                     $title = $skill_result->fetch_assoc()["title"];
+                                    $user_skill_id = $row["user_skill_id"]; 
                                     include("skill_row.php");
                                 }
-
-                                $conn->close();
                             ?>
+                            <h5 class="card-title">Add Skill</h5>
+                            <form action="add_skill.php" method="post">
+                                <label> Field
+                                    <select name="skill_id" id="skill_id">
+                                        <?php
+                                            $sql = "SELECT * FROM skills";
+                                            $skills = mysqli_query($conn, $sql);
+
+                                            if ($skills == false) {
+                                                echo "Database error.";
+                                            } while ($skill = $skills->fetch_assoc()) {
+                                                echo "<option name=\"skill_id\" value=\"" . $skill['skill_id'] . "\"> " . $skill['title'] . "</option>";
+                                            }
+                                        ?>
+                                    </select>
+                                </label>
+                                <input style="display:none" name="user_id" value="<?php echo $current_user_id ?>">
+                                <button type="submit" class="btn btn-primary"> Submit </button>
+                            </form>
                         </div>
-                        <h5 class="card-title">Add Skill</h5>
-                        <form action="login.php" method="post">
-                            
-                        </form>
                     </div>
                 </div>
             </div>

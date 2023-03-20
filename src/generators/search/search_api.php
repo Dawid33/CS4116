@@ -1,7 +1,13 @@
 <?php
+$skill_params = [];
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $search_term = $_GET['search-term'];
     $search_type = $_GET['search-type'];
+    foreach ($_GET as $key => $val) {
+        if (preg_match("/skill/i", $key)) {
+            array_push($skill_params, $val);
+        }
+    }
 } else {
     $search_term = '';
     $search_type = '';
@@ -40,9 +46,32 @@ if ($search_type == "users") {
         include('search_card.php');
     } else {
         while ($row = $result->fetch_assoc()) {
-            $title = '<a href="/vacancy.php?id=' . $row['vacancy_id'] . '">' . $row['title'] . '</a>';
-            $description = $row['description'];
-            include('search_card.php');
+            // Check whether vacancy conforms to skill search params.
+            $sql = "SELECT * FROM vacancy_skills WHERE vacancy_id = '" . $row['vacancy_id'] . "';";
+            $vacancy_skills = mysqli_query($conn, $sql);
+
+            $has_failed = true;
+            if ($vacancy_skills == false || sizeof($skill_params) == 0) {
+                $has_failed = false;
+            } else {
+                while ($vac_skill_row = $vacancy_skills->fetch_assoc()) {
+                    foreach ($skill_params as $_ => $param) {
+                        if (strcmp($vac_skill_row['skill_id'], $param) == 0) {
+                            $has_failed = false;
+                            break;
+                        }
+                    }
+                    if (!$has_failed) {
+                        break;
+                    }
+                }
+            }
+
+            if (!$has_failed) {
+                $title = '<a href="/vacancy.php?id=' . $row['vacancy_id'] . '">' . $row['title'] . '</a>';
+                $description = $row['description'];
+                include('search_card.php');
+            }
         }
     }
 } elseif ($search_type == "organisations") {

@@ -59,6 +59,8 @@ CREATE TABLE `qualifications` (
 CREATE TABLE `user_skills` (
   `user_id` varchar(255) NOT NULL,
   `skill_id` varchar(255) NOT NULL,
+  `user_skill_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT (uuid()),
+  PRIMARY KEY (`user_skill_id`),
   KEY `user_skills_FK_1` (`skill_id`),
   KEY `user_skills_FK` (`user_id`),
   CONSTRAINT `user_skills_FK` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -129,11 +131,14 @@ CREATE TABLE `vacancy_skills` (
 
 SET @test_user_id := uuid();
 SET @test_org_id := uuid();
+SET @vacancy_1 := uuid();
+SET @vacancy_2 := uuid();
+SET @vacancy_3 := uuid();
 INSERT INTO users (user_id, email, password, first_name, last_name, is_admin) VALUES (@test_user_id, "test@example.com", "test", "test", "test", false);
 INSERT INTO organisation (user_id, org_id, name, email, description) VALUES (@test_user_id, @test_org_id, "Test Company", "test@example.com", "A Test organisation description. This company is a complete test.");
-INSERT INTO vacancies (org_id, status, title, description) VALUES (@test_org_id, true, "Senior Engineer's hair stylist", "Can't work if hair bad.");
-INSERT INTO vacancies (org_id, status, title, description) VALUES (@test_org_id, true, "Coffee Brewer", "The Distinguished and honorable privelege of dispensing the lifeblood of the office to your colleagues.");
-INSERT INTO vacancies (org_id, status, title, description) VALUES (@test_org_id, true, "Keyboard Licker", "Discretion is advised.");
+INSERT INTO vacancies (vacancy_id, org_id, status, title, description) VALUES (@vacancy_1, @test_org_id, true, "Senior Engineer's hair stylist", "Can't work if hair bad.");
+INSERT INTO vacancies (vacancy_id, org_id, status, title, description) VALUES (@vacancy_2, @test_org_id, true, "Coffee Brewer", "The Distinguished and honorable privelege of dispensing the lifeblood of the office to your colleagues.");
+INSERT INTO vacancies (vacancy_id, org_id, status, title, description) VALUES (@vacancy_3, @test_org_id, true, "Keyboard Licker", "Discretion is advised.");
 INSERT INTO vacancies (org_id, status, title, description) VALUES (@test_org_id, true, "Office Masseuse", "Writing code is back breaking work after all.");
 INSERT INTO vacancies (org_id, status, title, description) VALUES (@test_org_id, true, "Coffee Grinder", "Role involves chewing coffee into brewable \"bite sized\" chunks. Kinda like those cats in Madagascar.");
 INSERT INTO vacancies (org_id, status, title, description) VALUES (@test_org_id, true, "A Real Bro", "Role involves standing at the door and fist bumping everyone who walks in the door.");
@@ -164,3 +169,9 @@ INSERT INTO skills (title, description) VALUES ("Javascript Legend", "");
 
 INSERT INTO user_skills (user_id, skill_id) VALUES (@test_user_id, @driver_license_id);
 INSERT INTO user_skills (user_id, skill_id) VALUES (@test_user_id, @cpp_master_id);
+
+-- Vacancy Skills
+
+INSERT INTO vacancy_skills (vacancy_id, skill_id) VALUES (@vacancy_1, @driver_license_id);
+INSERT INTO vacancy_skills (vacancy_id, skill_id) VALUES (@vacancy_1, @cpp_master_id);
+INSERT INTO vacancy_skills (vacancy_id, skill_id) VALUES (@vacancy_2, @cpp_master_id);

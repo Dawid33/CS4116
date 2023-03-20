@@ -24,7 +24,15 @@ let users = document.getElementById("users");
 let results_pane = document.getElementById("results-pane");
 
 function replace_results_with_api_call(url) {
-    fetch(url).then((result) => {
+    var checkboxes = document.getElementsByClassName("checkbox-item");
+    let args = "";
+    for (let i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].children[0].checked) {
+            args += `&skill${i + 1}=${checkboxes[i].children[0].value}`
+        }
+    }
+
+    fetch(url + args).then((result) => {
         result.text().then((text) => {
             results_pane.innerHTML = text;
         });
@@ -35,6 +43,7 @@ function with_search_type(type) {
     search_type = type;
     const new_url = `/search.php?search-type=${search_type}&search-term=${search_term}`;
     window.history.pushState("", search_type, new_url);
+
     replace_results_with_api_call(`http://${window.location.host}/generators/search/search_api.php?search-type=${search_type}&search-term=${search_term}`);
 }
 
