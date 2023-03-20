@@ -72,11 +72,11 @@
                 $title = '<a href="/vacancy.php?id=' . $row['vacancy_id'] . '">' . $row['title'] . '</a>';
                 $description = $row['description'];
 
-                $sql = "SELECT name FROM organisation WHERE org_id = '" . $row['org_id'] . "';";
+                $sql = "SELECT name, user_id FROM organisation WHERE org_id = '" . $row['org_id'] . "';";
                 $org_name_result = mysqli_query($conn, $sql);
 
                 if ($org_name_result) {
-                    $org_name = '<a href="/company.php?id=' . $row['vacancy_id'] . '">' . $org_name_result->fetch_assoc()['name'] . '</a>';
+                    $org_name = '<a href="/company.php?id=' . $row['user_id'] . '">' . $org_name_result->fetch_assoc()['name'] . '</a>';
                     include('vacancy_card.php');
                 } else {
                     $failed = true;
