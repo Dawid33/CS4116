@@ -130,7 +130,7 @@ CREATE TABLE `vacancy_skills` (
 SET @test_user_id := uuid();
 SET @test_org_id := uuid();
 INSERT INTO users (user_id, email, password, first_name, last_name, is_admin) VALUES (@test_user_id, "test@example.com", "test", "test", "test", false);
-INSERT INTO organisation (user_id, org_id, name, email) VALUES (@test_user_id, @test_org_id, "Test Company", "test@example.com");
+INSERT INTO organisation (user_id, org_id, name, email, description) VALUES (@test_user_id, @test_org_id, "Test Company", "test@example.com", "A Test organisation description. This company is a complete test.");
 INSERT INTO vacancies (org_id, status, title, description) VALUES (@test_org_id, true, "Senior Engineer's hair stylist", "Can't work if hair bad.");
 INSERT INTO vacancies (org_id, status, title, description) VALUES (@test_org_id, true, "Coffee Brewer", "The Distinguished and honorable privelege of dispensing the lifeblood of the office to your colleagues.");
 INSERT INTO vacancies (org_id, status, title, description) VALUES (@test_org_id, true, "Keyboard Licker", "Discretion is advised.");
