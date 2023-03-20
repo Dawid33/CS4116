@@ -54,25 +54,11 @@
                                     include("skill_row.php");
                                 }
                             ?>
-                            <h5 class="card-title">Add Skill</h5>
-                            <form action="add_skill.php" method="post">
-                                <label> Field
-                                    <select name="skill_id" id="skill_id">
-                                        <?php
-                                            $sql = "SELECT * FROM skills";
-                                            $skills = mysqli_query($conn, $sql);
-
-                                            if ($skills == false) {
-                                                echo "Database error.";
-                                            } while ($skill = $skills->fetch_assoc()) {
-                                                echo "<option name=\"skill_id\" value=\"" . $skill['skill_id'] . "\"> " . $skill['title'] . "</option>";
-                                            }
-                                        ?>
-                                    </select>
-                                </label>
-                                <input style="display:none" name="user_id" value="<?php echo $current_user_id ?>">
-                                <button type="submit" class="btn btn-primary"> Submit </button>
-                            </form>
+                            <?php 
+                                if (strcmp($user_id, $current_user_id) == 0) {
+                                    include("add_skill_form.php");
+                                }
+                            ?>
                         </div>
                     </div>
                 </div>
