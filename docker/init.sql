@@ -150,7 +150,17 @@ INSERT INTO users (user_id, email, password, first_name, last_name, is_admin) VA
 INSERT INTO connections (user_id_first, user_id_second) VALUES (@test_user_id, @hjass_user_id);
 INSERT INTO connections (user_id_first, user_id_second) VALUES (@test_user_id, @bdover_user_id);
 
--- More users
+-- Skills
 
-SET @hjass_user_id := uuid();
-INSERT INTO users (user_id, email, password, first_name, last_name, is_admin) VALUES (@hjass_user_id, "hjass@example.com", "hjass", "Hugh", "Jass", false);
+SET @driver_license_id := uuid();
+SET @cpp_master_id := uuid();
+INSERT INTO skills (title, description, skill_id) VALUES ("Drivers License", "Holds a full drivers license", @driver_license_id);
+INSERT INTO skills (title, description, skill_id) VALUES ("C++ Master", "", @cpp_master_id);
+INSERT INTO skills (title, description) VALUES ("Keyboard Jockey", "");
+INSERT INTO skills (title, description) VALUES ("IT Wizard", "");
+INSERT INTO skills (title, description) VALUES ("Javascript Legend", "");
+
+-- Mr.Test's skills
+
+INSERT INTO user_skills (user_id, skill_id) VALUES (@test_user_id, @driver_license_id);
+INSERT INTO user_skills (user_id, skill_id) VALUES (@test_user_id, @cpp_master_id);

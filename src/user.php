@@ -5,6 +5,6 @@
     } 
     $current_user_id = $_SESSION["user"];
 
-    $content_php_file = "gen_user_content.php";
+    $content_php_file = "user/gen_user_content.php";
     include('generators/generic.php');
 ?>

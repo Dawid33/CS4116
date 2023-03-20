@@ -26,18 +26,10 @@ let results_pane = document.getElementById("results-pane");
 function replace_results_with_api_call(url) {
     fetch(url).then((result) => {
         result.text().then((text) => {
-            // if (text == "") {
-            //     results_pane.innerText = "No results.";
-            // } else {
-                results_pane.innerHTML = text;
-            // }
+            results_pane.innerHTML = text;
         });
     });
 }
-
-
-
-// replace_results_with_api_call(`http://localhost/generators/search/search_api.php?search-type=vacancies&search-term=${search_term}`);
 
 function with_search_type(type) {
     search_type = type;
@@ -51,10 +43,9 @@ let submit_field = document.getElementById('search-field');
 
 submit_button.addEventListener("click", (e) => {
     search_term = submit_field.value;
-    replace_results_with_api_call(`http://${window.location.host}/generators/search/search_api.php?search-type=${search_type}&search-term=${search_term}`);
+    replace_results_with_api_call(`${window.location.protocol}//${window.location.host}/generators/search/search_api.php?search-type=${search_type}&search-term=${search_term}`);
 });
 
 vacancies.addEventListener("click", ((e) => { with_search_type("vacancies")}));
 users.addEventListener("click", ((e) => { with_search_type("users")}));
 organisations.addEventListener("click", ((e) => { with_search_type("organisations")}));
-
