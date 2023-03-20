@@ -32,8 +32,10 @@
 
                 <div class="col-5">
                     <div class="card feed-item">
-                        <div class="card-body">
-                            <h5 class="card-title">Skills</h5>
+                        <div class="card">
+                            <div class="card-header">
+                            Skills
+                            </div>
                             <?php
                                 $user_id = $_GET["id"];
                                 $conn = new mysqli("db", "cs4116", "cs4116", "cs4116");
@@ -67,11 +69,41 @@
             </div>
             <div class="row mt-4">
                 <div class="col">
-                    <div class="card feed-item">
-                        <div class="card-body">
-                            <h5 class="card-title">Experience</h5>
+                    <div class="card">
+                        <div class="card-header">
+                           Qualifications 
                         </div>
+                        <table class="style="table-layout: fixed; width: 100%;">
+                            <?php
+                                $user_id = $_GET["id"];
+                                $conn = new mysqli("db", "cs4116", "cs4116", "cs4116");
+
+                                if ($conn->connect_error) {
+                                    die("Connection failure: " . $conn->connect_error);
+                                }
+
+                                $sql = "SELECT * FROM qualifications WHERE user_id = '$user_id'";
+                                $result = mysqli_query($conn, $sql);
+                                if ($result == false) {
+                                    echo "Database error.";
+                                } elseif ($result->num_rows == 0) {
+                                    echo "No qualificatoins supplied.";
+                                } while ($row = $result->fetch_assoc()) {
+                                    $title = $row["qualification_title"]; 
+                                    $description = $row["qualification_description"]; 
+                                    $qual_id = $row["qualification_id"];
+                                    include("qualification.php");
+                                }
+                            ?>
+                        </table>
                     </div>
+
+                    </br>
+                    <?php 
+                        if (strcmp($user_id, $current_user_id) == 0) {
+                            include("add_qualification_form.php");
+                        }
+                    ?>
                 </div>
             </div>
         </div>

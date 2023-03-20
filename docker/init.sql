@@ -176,3 +176,7 @@ INSERT INTO vacancy_skills (vacancy_id, skill_id) VALUES (@vacancy_1, @driver_li
 INSERT INTO vacancy_skills (vacancy_id, skill_id) VALUES (@vacancy_1, @cpp_master_id);
 
 INSERT INTO vacancy_skills (vacancy_id, skill_id) VALUES (@vacancy_2, @cpp_master_id);
+
+-- Mr.Test's Qualifications
+
+INSERT INTO qualifications (user_id, qualification_title, qualification_description, qualification_degree, qualification_year) VALUES (@test_user_id, "Professional Liar", "The greatest conman of the 21st century.", "", NOW());
