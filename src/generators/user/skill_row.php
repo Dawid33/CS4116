@@ -10,7 +10,7 @@
 
 <style>
     .skill-list{
-        margin: 10px 0;
+        margin-bottom: 10px;
     }
 
 </style>

@@ -1,4 +1,7 @@
 <?php
+    session_start();
+    $current_user_id = $_SESSION["user"];
+    
     $user_id = $_GET["id"];
     $conn = new mysqli("db", "cs4116", "cs4116", "cs4116");
 
@@ -28,9 +31,11 @@
                             <div class="card-body">
                                 <h6 class="card-subtitle mb-2">Name</h6>
                                 <p class="card-text"> <?php print $user_details["first_name"] ?> <?php print $user_details["last_name"] ?></p>
-                                <hr></hr>
-                                <h6 class="card-subtitle mb-2">Bio</h6>
-                                <p class="card-text"> <?php echo $user_details["bio"] ?></p>
+                                <?php if(!empty($user_details["bio"])) { ?>
+                                    <hr></hr>
+                                    <h6 class="card-subtitle mb-2">Bio</h6>
+                                    <p class="card-text"> <?php echo $user_details["bio"]  ?></p> 
+                                <?php } ?>
                             </div>
                         </div>
                     </div>
@@ -134,7 +139,7 @@
                                     die("Connection failure: " . $conn->connect_error);
                                 }
                         
-                                $sql = "SELECT user_id_second FROM connections WHERE user_id_first = '" . $user_id. "';";
+                                $sql = "SELECT user_id_second FROM connections WHERE user_id_first = '" . $current_user_id. "';";
                                 $result = mysqli_query($conn, $sql);
                                 $friend_count = 0;
                                 if ($result) {

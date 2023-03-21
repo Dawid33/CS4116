@@ -1,4 +1,4 @@
-<tr class="list-group-item justify-content-between d-flex">
+<tr class="qual-list list-group-item justify-content-between d-flex">
     <td class="qual-title"> <b> <?php echo $title; ?> </b> </td>
     <td> <?php echo $description; ?> </td>
     <td class="mr-auto p-2">
@@ -9,3 +9,10 @@
         ?>
     </td>
 </tr>
+
+<style>
+    .qual-list{
+        margin-bottom: 10px;
+    }
+
+</style>
