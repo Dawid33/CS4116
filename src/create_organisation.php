@@ -55,7 +55,7 @@
 </br>
     <div class="container">
         <div class="row">
-            <div class="d-flex justify-content-between display-6"> WiredIn 
+            <div class="d-flex justify-content-between display-6"> <b>WiredIn</b>
                 <div> 
                     <a href="index.php" class="btn btn-lg" role="button">Cancel</a>
                 </div>
