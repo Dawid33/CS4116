@@ -1,6 +1,8 @@
 <?php
     session_start();
     $current_user_id = $_SESSION["user"];
+
+    $is_admin=false;
     
     $user_id = $_GET["id"];
     $conn = new mysqli("db", "cs4116", "cs4116", "cs4116");
@@ -12,6 +14,8 @@
     $sql = "SELECT * FROM users WHERE user_id = '$user_id'";
     $result = mysqli_query($conn, $sql);
     $user_details = mysqli_fetch_array($result, MYSQLI_ASSOC);  
+
+    $is_admin=$user_details["isAdmin"];
 
     $conn->close();
 
@@ -25,8 +29,11 @@
                     <div class="card feed-item">
                         <div class="card">
                             <div class="card-header d-flex justify-content-between">
-                                <h5>About</h5> 
-                                <?php if($user_id == $_SESSION["user"]) print '<a href="edit_user.php" type="button" class="btn btn-submit btn-sm btn-primary">Edit</a>' ?>
+                                <h5>About</h5>
+                                <div>
+                                    <?php if($user_id == $_SESSION["user"] || $is_admin) print '<a href="create_organisation.php" type="button" class="btn btn-submit btn-sm btn-primary">Create Organisation</a>' ?> 
+                                    <?php if($user_id == $_SESSION["user"] || $is_admin) print '<a href="edit_user.php" type="button" class="btn btn-submit btn-sm btn-primary">Edit</a>' ?>
+                                </div>
                             </div>
                             <div class="card-body">
                                 <h6 class="card-subtitle mb-2">Name</h6>
