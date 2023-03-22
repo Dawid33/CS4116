@@ -67,30 +67,42 @@
         $result = mysqli_query($conn, $query);
 
         $failed = false;
-        if ($result) {
-            while ($row = $result->fetch_assoc()) {
-                $title = '<a href="/vacancy.php?id=' . $row['vacancy_id'] . '">' . $row['title'] . '</a>';
-                $description = $row['description'];
+        ?>
+        
+        <div class="card">
 
-                $sql = "SELECT name, user_id FROM organisation WHERE org_id = '" . $row['org_id'] . "';";
-                $org_name_result = mysqli_query($conn, $sql);
+            <div class=card-header>
+                <h5>Vacancies</h5>
+            </div>
+            <div class="card-body">
+                <?php
+                    if ($result) {
+                        while ($row = $result->fetch_assoc()) {
+                            $title = '<a href="/vacancy.php?id=' . $row['vacancy_id'] . '">' . $row['title'] . '</a>';
+                            $description = $row['description'];
 
-                if ($org_name_result) {
-                    $org_name = '<a href="/company.php?id=' . $row['org_id'] . '">' . $org_name_result->fetch_assoc()['name'] . '</a>';
-                    include('vacancy_card.php');
-                } else {
-                    $failed = true;
-                    break;
-                }
-            }
-        } else {
-            $failed = true;
-        }
+                            $sql = "SELECT name, user_id FROM organisation WHERE org_id = '" . $row['org_id'] . "';";
+                            $org_name_result = mysqli_query($conn, $sql);
 
-        if ($failed) {
-            echo "<div class='alert alert-danger'>Cannot fetch vacancies</div>";
-        }
-    ?>
+                            if ($org_name_result) {
+                                $org_name = '<a href="/company.php?id=' . $row['org_id'] . '">' . $org_name_result->fetch_assoc()['name'] . '</a>';
+                                include('vacancy_card.php');
+                            } else {
+                                $failed = true;
+                                break;
+                            }
+                        }
+                    } else {
+                        $failed = true;
+                    }
+
+                    if ($failed) {
+                        echo "<div class='alert alert-danger'>Cannot fetch vacancies</div>";
+                    }
+                ?>
+            </div>
+        </div>
+
     <div id="page-button-container">
         <?php
             if ($cur_page > 1) {
@@ -108,7 +120,7 @@
 <div id="nav-friends">
     <div class="card">
         <div class="card-header">
-            Friends
+            <h5>Friends<h5>
         </div>
         <div class="card-body">
             <ul class="list-group">
