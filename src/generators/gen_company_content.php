@@ -75,18 +75,8 @@ $conn = new mysqli("db", "cs4116", "cs4116", "cs4116");
                                     $isOwner = 1;
                                    }
                                  }
-                                
-                                $isAdmin = 0;
-                                $adminSql = "SELECT is_admin FROM users WHERE user_id = '" . $current_user_id . "';";
-                                $adminResult = $conn->query($adminSql);
 
-                                while($row = $adminResult->fetch_assoc())
-                                {
-                                   if ($row["is_admin"] == 1) {
-                                    $isAdmin = 1;
-                                   }
-                                 }
-                                if($isOwner == 1 || $isAdmin == 1) print '<a href="edit_org_description.php" type="button" class="btn btn-submit btn-sm btn-primary">Edit</a>' 
+                                if($isOwner == 1 || $_SESSION["user_is_admin"] == 1) print '<a href="edit_org_description.php" type="button" class="btn btn-submit btn-sm btn-primary">Edit</a>' 
                                 ?>
                             </div>
     <div class="card-body">
@@ -131,18 +121,8 @@ $conn = new mysqli("db", "cs4116", "cs4116", "cs4116");
                                     $isOwner = 1;
                                    }
                                  }
-                                
-                                $isAdmin = 0;
-                                $adminSql = "SELECT is_admin FROM users WHERE user_id = '" . $current_user_id . "';";
-                                $adminResult = $conn->query($adminSql);
 
-                                while($row = $adminResult->fetch_assoc())
-                                {
-                                   if ($row["is_admin"] == 1) {
-                                    $isAdmin = 1;
-                                   }
-                                 }
-                                if($isOwner == 1 || $isAdmin == 1) print '<a class="btn btn-primary" href="/create_vacancy.php" role="button" data-bs-toggle="button">Create vacancy</a>' 
+                                if($isOwner == 1 || $_SESSION["user_is_admin"] == 1) print '<a class="btn btn-primary" href="/create_vacancy.php" role="button" data-bs-toggle="button">Create vacancy</a>' 
                                 ?>
 </div>
 </div>

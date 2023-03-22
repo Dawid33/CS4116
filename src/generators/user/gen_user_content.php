@@ -26,7 +26,7 @@
                         <div class="card">
                             <div class="card-header d-flex justify-content-between">
                                 <h5>About</h5> 
-                                <?php if($user_id == $_SESSION["user"]) print '<a href="edit_user.php" type="button" class="btn btn-submit btn-sm btn-primary">Edit</a>' ?>
+                                <?php if($user_id == $_SESSION["user"] || $_SESSION["user_is_admin"] == 1) print '<a href="edit_user.php" type="button" class="btn btn-submit btn-sm btn-primary">Edit</a>' ?>
                             </div>
                             <div class="card-body">
                                 <h6 class="card-subtitle mb-2">Name</h6>
@@ -71,7 +71,7 @@
                                     }
                                 ?>
                                 <?php 
-                                    if (strcmp($user_id, $current_user_id) == 0) {
+                                    if (strcmp($user_id, $current_user_id) == 0 || $_SESSION["user_is_admin"] == 1) {
                                         include("add_skill_form.php");
                                     }
                                 ?>
@@ -115,7 +115,7 @@
 
                     </br>
                     <?php 
-                        if (strcmp($user_id, $current_user_id) == 0) {
+                        if (strcmp($user_id, $current_user_id) == 0 || $_SESSION["user_is_admin"] == 1) {
                             include("add_qualification_form.php");
                         }
                     ?>

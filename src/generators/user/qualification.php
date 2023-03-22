@@ -3,7 +3,7 @@
     <td> <?php echo $description; ?> </td>
     <td class="mr-auto p-2">
         <?php
-        if (strcmp($user_id, $current_user_id) == 0) {
+        if (strcmp($user_id, $current_user_id) == 0 || $_SESSION["user_is_admin"] == 1) {
             include "remove_qualification_form.php";
         } 
         ?>
