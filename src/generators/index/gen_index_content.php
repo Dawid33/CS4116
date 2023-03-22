@@ -70,7 +70,6 @@
         ?>
         
         <div class="card">
-
             <div class=card-header>
                 <h5>Vacancies</h5>
             </div>

@@ -86,8 +86,10 @@
                         $result = $conn->query($sql);
 
                         while($row = $result->fetch_assoc()) {
+                            $vacancy_id = $row['vacancy_id'];
                             $title = '<a href="/vacancy.php?id=' . $row['vacancy_id'] . '">' . $row['title'] . '</a>';
                             $description = $row['description'];
+                            $org_id = $_GET['id'];
 
                             $sql = "SELECT name FROM organisation WHERE org_id = '" . $row['org_id'] . "';";
 
