@@ -114,7 +114,36 @@ $conn = new mysqli("db", "cs4116", "cs4116", "cs4116");
     <h5>Vacancies:</h5>
 </div>
     <div class="col text-center">
-    <a class="btn btn-primary" href="/create_vacancy.php" role="button" data-bs-toggle="button">Create vacancy</a>
+    <?php
+                                $conn = new mysqli("db", "cs4116", "cs4116", "cs4116");
+
+                                if ($conn->connect_error) {
+                                    die("Connection failure: " . $conn->connect_error);
+                                }
+                        
+                                $isOwner = 0;
+                                $userSql = "SELECT user_id FROM organisation WHERE org_id = '" . $_GET['id'] . "';";
+                                $userResult = $conn->query($userSql);
+
+                                while($row = $userResult->fetch_assoc())
+                                {
+                                   if ($row["user_id"] == $current_user_id) {
+                                    $isOwner = 1;
+                                   }
+                                 }
+                                
+                                $isAdmin = 0;
+                                $adminSql = "SELECT is_admin FROM users WHERE user_id = '" . $current_user_id . "';";
+                                $adminResult = $conn->query($adminSql);
+
+                                while($row = $adminResult->fetch_assoc())
+                                {
+                                   if ($row["is_admin"] == 1) {
+                                    $isAdmin = 1;
+                                   }
+                                 }
+                                if($isOwner == 1 || $isAdmin == 1) print '<a class="btn btn-primary" href="/create_vacancy.php" role="button" data-bs-toggle="button">Create vacancy</a>' 
+                                ?>
 </div>
 </div>
 
