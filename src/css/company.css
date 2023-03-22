@@ -6,3 +6,22 @@
 .vacancies {
     margin: -12px;
 }
+
+.vacancy-row-layout {
+    display: grid;
+    grid-template-columns: 1.0fr;
+    grid-template-rows: max-content;
+    margin: 20px;
+}
+
+.org-name-card {
+    width: 30rem;
+}
+
+.org-description-card {
+    width: 30rem;
+}
+
+.org-vacancies-card {
+    text-align: center;
+}

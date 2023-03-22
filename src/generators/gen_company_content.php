@@ -1,7 +1,7 @@
 <content>
 
-<div class="row">
-<div class="card feed-item col">
+<div class="row row-cols-2">
+<div class="card feed-item col org-name-card">
     <div class="card-body">
         <h5 class="card-title text-center">
     <?php
@@ -22,7 +22,7 @@ $conn = new mysqli("db", "cs4116", "cs4116", "cs4116");
    </h5>
 </div>
 </div>
-<div class="card feed-item col">
+<div class="card feed-item col org-description-card">
     <div class="card-body">
     <p class="card-text">
     <?php
@@ -43,7 +43,15 @@ $conn = new mysqli("db", "cs4116", "cs4116", "cs4116");
     </p>
     </div>
 </div>
+
+<div class="col org-vacancies-card">
+    <h5>Vacancies:</h5>
 </div>
+    <div class="col text-center">
+    <a class="btn btn-primary" href="/create_vacancy.php" role="button" data-bs-toggle="button">Create vacancy</a>
+</div>
+</div>
+
  <div class="vacancies">
         <?php
 $conn = new mysqli("db", "cs4116", "cs4116", "cs4116");
