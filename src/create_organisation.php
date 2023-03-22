@@ -5,6 +5,8 @@
     } 
     $current_user_id = $_SESSION["user"];
 
+    $create_org_errors = array();
+
     if (isset($_POST["create"])) {
         $conn = new mysqli("db", "cs4116", "cs4116", "cs4116");
 
@@ -30,12 +32,12 @@
 
             if (($conn->query($sql_insert))) {
                 header("Location: index.php");
+                die();
             }else {
                 echo $conn->error;
             }
         }else{
-            $_SESSION["org_create_error"]=$org_error;
-            header("Location: create_organisation.php?error=" . "error");
+            $create_org_errors["fieldsValidation"] = "All fields are required";
         }
         $conn->close();
     }
@@ -51,10 +53,9 @@
 
 <body>
 </br>
-<!-- action="index.php" -->
     <div class="container">
         <div class="row">
-            <div class="d-flex justify-content-between display-6"> WiredIn 
+            <div class="d-flex justify-content-between display-6"> <b>WiredIn</b>
                 <div> 
                     <a href="index.php" class="btn btn-lg" role="button">Cancel</a>
                 </div>
@@ -66,7 +67,7 @@
         </br>
         <div class="row">
             <div class= "d-md-flex justify-content-center"> 
-                <form method="post">
+                <form action="create_organisation.php" method="post">
                     <div class="form-group">
                         <input type="text" name="company_name" class="form-control" placeholder="Company Name" value="<?php echo htmlspecialchars($_POST['company_name'] ?? '', ENT_QUOTES);?>">
                     </div>
@@ -80,14 +81,14 @@
                     </div>
                     </br>
                     <div class="form-group">
-                        <textarea class="form-control" name="description" placeholder="Description" rows="2"></textarea> 
+                        <textarea class="form-control" name="description" placeholder="Description" rows="2"><?php echo htmlspecialchars($_POST['description'] ?? '', ENT_QUOTES);?></textarea> 
                     </div>
                     </br>
                     <div class="d-flex justify-content-center">
                         <input class="btn btn-lg" type="submit" name="create" value="Create"></input>
                     </div>
                     </br>
-                    <?php if(isset($_GET['error'])){ print "<div class='text-center alert alert-danger'>All fields are required</div>"; }?>
+                    <?php if(array_key_exists("fieldsValidation", $create_org_errors)){ $err = $create_org_errors["fieldsValidation"]; print "<div class='text-center alert alert-danger'>$err</div>"; }?>
                 </form>
             </div>
         </div>

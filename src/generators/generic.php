@@ -15,12 +15,12 @@
     <div id="main-container">
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/index.php">WiredIn</a>
+                <a class="navbar-brand" href="/index.php"><b>WiredIn</b></a>
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link active" href="/search.php">Search</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="/index.php">Home</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="/user.php?id=<?php print $current_user_id ?>">Profile</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="/logout.php">Logout</a></li>
+                    <li class="navbar-brand"><a class="nav-link active" href="/search.php">Search</a></li>
+                    <li class="navbar-brand"><a class="nav-link active" href="/index.php">Home</a></li>
+                    <li class="navbar-brand"><a class="nav-link active" href="/user.php?id=<?php print $current_user_id ?>">Profile</a></li>
+                    <li class="navbar-brand"><a class="nav-link active" href="/logout.php">Logout</a></li>
                 </ul>
             </div>
         </nav>

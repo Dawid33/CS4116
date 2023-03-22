@@ -30,7 +30,7 @@
                 $login_errors["passwordValidation"] = "Password does not match";
             }
         }else{
-            $login_errors["emailValidation"] = "Email does not match";;
+            $login_errors["emailValidation"] = "Email does not match";
         }
 
         $conn->close();
@@ -49,7 +49,7 @@
 </br>
     <div class="container">
         <div class="row">
-            <div class="d-flex justify-content-between display-6"> WiredIn 
+            <div class="d-flex justify-content-between display-6"> <b>WiredIn</b> 
                 <div> 
                     <a href="register.php" class="btn btn-lg" role="button">Register</a>
                 </div>

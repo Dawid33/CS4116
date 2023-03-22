@@ -1,12 +1,21 @@
 <div class="card">
     <div class="card-header">
-        Add Qualifications 
+        <h5>Add Qualifications</h5> 
     </div>
+    <div class="card-body">
+        <form action="add_qualification.php" method="post" id="add-qualification">
+            <div class="form-group">
+                <input class="form-control" type="text" name="title" placeholder="Title"></input>
+            </div>
+            <br>
+            <div class="form-group">
+                <span class="input-group-btn" style="width:5px;"></span>
 
-    <form action="add_qualification.php" method="post" id="add-qualification">
-        <label> Title <input type="text" name="title" value""></input></label>
-        <label> Description <textarea type="text" name="description" value""></textarea></label>
-        <input style="display:none" name="user_id" value="<?php echo $user_id ?>">
-        <button type="submit" class="btn btn-primary"> Submit </button>
-    </form>
+                <textarea class="form-control" type="text" name="description" placeholder="Description"></textarea>
+            </div>
+            <br>
+            <input style="display:none" name="user_id" value="<?php echo $user_id ?>">
+            <button type="submit" class="btn btn-submit btn-primary"> Submit </button>
+        </form>
+    </div>
 </div>
