@@ -130,12 +130,19 @@ CREATE TABLE `vacancy_skills` (
 -- Test user dummy data
 
 SET @test_user_id := uuid();
+SET @test_user2_id := uuid();
 SET @test_org_id := uuid();
+SET @test_org2_id := uuid();
 SET @vacancy_1 := uuid();
 SET @vacancy_2 := uuid();
 SET @vacancy_3 := uuid();
+SET @vacancy4 := uuid();
+
+
 INSERT INTO users (user_id, email, password, first_name, last_name, is_admin, bio) VALUES (@test_user_id, "test@example.com", "test", "test", "test", false, "This is a test user, nothing to see here.");
+INSERT INTO users (user_id, email, password, first_name, last_name, is_admin, bio) VALUES (@test_user2_id, "cael@example.com", "cael", "O'Flaherty", "cael", true, "Hi my name is cael. This is a test user account.");
 INSERT INTO organisation (user_id, org_id, name, email, description) VALUES (@test_user_id, @test_org_id, "Test Company", "test@example.com", "A Test organisation description. This company is a complete test.");
+INSERT INTO organisation (user_id, org_id, name, email, description) VALUES (@test_user2_id, @test_org2_id, "Cael's Company", "cael@example.com", "Cael's Test organisation description. This company is a complete test.");
 INSERT INTO vacancies (vacancy_id, org_id, status, title, description) VALUES (@vacancy_1, @test_org_id, true, "Senior Engineer's hair stylist", "Can't work if hair bad.");
 INSERT INTO vacancies (vacancy_id, org_id, status, title, description) VALUES (@vacancy_2, @test_org_id, true, "Coffee Brewer", "The Distinguished and honorable privelege of dispensing the lifeblood of the office to your colleagues.");
 INSERT INTO vacancies (vacancy_id, org_id, status, title, description) VALUES (@vacancy_3, @test_org_id, true, "Keyboard Licker", "Discretion is advised.");
@@ -144,6 +151,7 @@ INSERT INTO vacancies (org_id, status, title, description) VALUES (@test_org_id,
 INSERT INTO vacancies (org_id, status, title, description) VALUES (@test_org_id, true, "A Real Bro", "Role involves standing at the door and fist bumping everyone who walks in the door.");
 INSERT INTO vacancies (org_id, status, title, description) VALUES (@test_org_id, true, "Pool Afficionado", "Pool tables in the office aren't getting used so we need someone to make it look like they were a good investment.");
 INSERT INTO vacancies (org_id, status, title, description) VALUES (@test_org_id, true, "Slow Typist", "We need someone to make fun of.");
+INSERT INTO vacancies (vacancy_id, org_id, status, title, description) VALUES (@vacancy4, @test_org2_id, true, "Cael's company is looking for software devs", "Can't work here without knowledge of Jedward!");
 
 -- Mr.Test's Friends
 
