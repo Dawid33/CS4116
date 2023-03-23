@@ -3,7 +3,7 @@
     $current_user_id = $_SESSION["user"];
     $current_org_id = $_GET["id"];
     $isOwner = 0;
-    $isAdmin = $_SESSION["is_admin"]
+    $isAdmin = $_SESSION["is_admin"];
 
     $conn = new mysqli("db", "cs4116", "cs4116", "cs4116");
 
@@ -11,8 +11,9 @@
         die("Connection failure: " . $conn->connect_error);
     } 
 
-    $userSql = "SELECT user_id FROM organisation WHERE org_id = '$current_org_id'";
+    $userSql = "SELECT user_id, name, description FROM organisation WHERE org_id = '$current_org_id'";
     $userResult = $conn->query($userSql);
+    $org_details = mysqli_fetch_array($userResult, MYSQLI_ASSOC);
 
     while($row = $userResult->fetch_assoc())
     {
@@ -78,7 +79,7 @@
                             $org_name_result = mysqli_query($conn, $sql);
 
                             if ($org_name_result) {
-                                $org_name = '<a href="/company.php?id=' . $row['vacancy_id'] . '">' . $org_name_result->fetch_assoc()['name'] . '</a>';
+                                $org_name = '<a href="/company.php?id=' . $current_org_id . '">' . $org_name_result->fetch_assoc()['name'] . '</a>';
                                 include('index/vacancy_card.php');
                             }
                         }         
