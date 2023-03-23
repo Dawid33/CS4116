@@ -28,10 +28,14 @@
 
         if (!$error) {
             $sql_insert= "INSERT INTO organisation (user_id, name, email, address, description)
-            VALUES ('$current_user_id', '$company_name', '$email', '$address', '$description')";
+                VALUES ('$current_user_id', '$company_name', '$email', '$address', '$description')";
 
             if (($conn->query($sql_insert))) {
-                header("Location: index.php");
+                $sql_select = "SELECT * FROM organisation WHERE email = '$email'";
+                $select_result = mysqli_query($conn, $sql_select);
+                $org_details = mysqli_fetch_array($select_result, MYSQLI_ASSOC);  
+                $org_location=$org_details["org_id"];
+                header("Location: company.php?id=".$org_location);
                 die();
             }else {
                 echo $conn->error;
@@ -57,7 +61,7 @@
         <div class="row">
             <div class="d-flex justify-content-between display-6"> <b>WiredIn</b>
                 <div> 
-                    <a href="index.php" class="btn btn-lg" role="button">Cancel</a>
+                    <a href="user.php?id=<?php echo $current_user_id ?>" class="btn btn-lg" role="button">Cancel</a>
                 </div>
             </div>
         </div>

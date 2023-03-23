@@ -9,10 +9,3 @@
         ?>
     </td>
 </tr>
-
-<style>
-    .qual-list{
-        margin-bottom: 10px;
-    }
-
-</style>
