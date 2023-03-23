@@ -27,7 +27,7 @@
                                 <h5>About</h5> 
                                 <div>
                                     <?php if($user_id == $_SESSION["user"] || $_SESSION["user_is_admin"] == 1) print '<a href="create_organisation.php" type="button" class="btn btn-submit btn-sm btn-primary">Create Organisation</a>' ?> 
-                                    <?php if($user_id == $_SESSION["user"] || $_SESSION["user_is_admin"] == 1) print '<a href="edit_user.php" type="button" class="btn btn-submit btn-sm btn-primary">Edit</a>' ?>
+                                    <?php if($user_id == $_SESSION["user"] || $_SESSION["user_is_admin"] == 1) print "<a href='edit_user.php?id=$user_id' type='button' class='btn btn-submit btn-sm btn-primary'>Edit</a>" ?>
                                 </div>                            </div>
                             <div class="card-body">
                                 <h6 class="card-subtitle mb-2">Name</h6>
