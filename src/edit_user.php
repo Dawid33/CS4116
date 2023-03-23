@@ -4,6 +4,7 @@
        header("Location: login.php");
     } 
     $current_user_id = $_SESSION["user"];
+    $user_id = $_GET["id"];
     $edit_errors = array();
 
     if (isset($_POST["save"])) {
@@ -25,10 +26,10 @@
         }
 
         if (!$error) {
-            $sql_update = "UPDATE users SET first_name='$first_name', last_name='$last_name', bio='$bio' WHERE user_id = '$current_user_id'";
+            $sql_update = "UPDATE users SET first_name='$first_name', last_name='$last_name', bio='$bio' WHERE user_id = '$user_id'";
 
             if (($conn->query($sql_update))) {
-                header("Location: user.php?id=".$current_user_id);
+                header("Location: user.php?id=".$user_id);
             }else {
                 echo $conn->error;
             }
@@ -54,7 +55,7 @@
         <div class="row">
             <div class="d-flex justify-content-between display-6"> WiredIn 
                 <div> 
-                    <a href="user.php?id=<?php print $current_user_id ?>" class="btn btn-lg" role="button">Cancel</a>
+                    <a href="user.php?id=<?php print $user_id ?>" class="btn btn-lg" role="button">Cancel</a>
                 </div>
             </div>
         </div>
@@ -64,7 +65,7 @@
         </br>
         <div class="row">
             <div class= "d-md-flex justify-content-center"> 
-                <form action="edit_user.php" method="post">
+                <form action="edit_user.php?id=<?php echo $user_id; ?>" method="post">
                     <div class="form-group">
                         <input type="text" name="first_name" class="form-control" placeholder="First Name" value="<?php echo htmlspecialchars($_POST['first_name'] ?? '', ENT_QUOTES);?>">
                     </div>
