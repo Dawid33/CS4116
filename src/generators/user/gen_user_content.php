@@ -144,6 +144,7 @@
                     <div class="card-body">
                         <ul class="list-group">
                             <?php
+                            $user_id = $_GET["id"];
                                 $conn = new mysqli("db", "cs4116", "cs4116", "cs4116");
 
                                 // Check connection
@@ -151,12 +152,16 @@
                                     die("Connection failure: " . $conn->connect_error);
                                 }
                         
-                                $sql = "SELECT user_id_second FROM connections WHERE user_id_first = '" . $current_user_id. "';";
+                                $sql = "SELECT user_id_second FROM connections WHERE user_id_first = '" . $user_id . "';";
                                 $result = mysqli_query($conn, $sql);
                                 $friend_count = 0;
                                 if ($result) {
                                     if (mysqli_num_rows($result) == 0) {
-                                        echo '<li class="list-group-item d-flex justify-content-between align-items-center">You have no friends :(</li>';
+                                        if ($current_user_id == $user_id) {
+                                            echo '<li class="list-group-item d-flex justify-content-between align-items-center">You have no friends :(</li>';
+                                        } else {
+                                            echo '<li class="list-group-item d-flex justify-content-between align-items-center">They have no friends :(</li>';
+                                        }
                                     } else {
                                         while ($row = $result->fetch_assoc()) {
                                             if ($friend_count >= 5) {
