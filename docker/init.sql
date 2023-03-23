@@ -133,6 +133,7 @@ SET @test_user_id := uuid();
 SET @test_user2_id := uuid();
 SET @test_org_id := uuid();
 SET @test_org2_id := uuid();
+
 SET @vacancy_1 := uuid();
 SET @vacancy_2 := uuid();
 SET @vacancy_3 := uuid();
@@ -167,9 +168,10 @@ INSERT INTO connections (user_id_first, user_id_second) VALUES (@test_user_id, @
 
 SET @driver_license_id := uuid();
 SET @cpp_master_id := uuid();
+SET @keyboard_jockey:= uuid();
 INSERT INTO skills (title, description, skill_id) VALUES ("Drivers License", "Holds a full drivers license", @driver_license_id);
 INSERT INTO skills (title, description, skill_id) VALUES ("C++ Master", "", @cpp_master_id);
-INSERT INTO skills (title, description) VALUES ("Keyboard Jockey", "");
+INSERT INTO skills (title, description, skill_id) VALUES ("Keyboard Jockey", "", @keyboard_jockey);
 INSERT INTO skills (title, description) VALUES ("IT Wizard", "");
 INSERT INTO skills (title, description) VALUES ("Javascript Legend", "");
 
@@ -184,6 +186,10 @@ INSERT INTO vacancy_skills (vacancy_id, skill_id) VALUES (@vacancy_1, @driver_li
 INSERT INTO vacancy_skills (vacancy_id, skill_id) VALUES (@vacancy_1, @cpp_master_id);
 
 INSERT INTO vacancy_skills (vacancy_id, skill_id) VALUES (@vacancy_2, @cpp_master_id);
+
+INSERT INTO vacancy_skills (vacancy_id, skill_id) VALUES (@vacancy_3, @cpp_master_id);
+INSERT INTO vacancy_skills (vacancy_id, skill_id) VALUES (@vacancy_3, @keyboard_jockey);
+INSERT INTO vacancy_skills (vacancy_id, skill_id) VALUES (@vacancy_3, @driver_license_id);
 
 -- Mr.Test's Qualifications
 
