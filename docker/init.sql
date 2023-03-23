@@ -140,7 +140,7 @@ SET @vacancy4 := uuid();
 
 
 INSERT INTO users (user_id, email, password, first_name, last_name, is_admin, bio) VALUES (@test_user_id, "test@example.com", "test", "test", "test", false, "This is a test user, nothing to see here.");
-INSERT INTO users (user_id, email, password, first_name, last_name, is_admin, bio) VALUES (@test_user2_id, "cael@example.com", "cael", "O'Flaherty", "cael", true, "Hi my name is cael. This is a test user account.");
+INSERT INTO users (user_id, email, password, first_name, last_name, is_admin, bio) VALUES (@test_user2_id, "cael@example.com", "cael", "Cael", "O'Flaherty", true, "Hi my name is cael. This is a test user account.");
 INSERT INTO organisation (user_id, org_id, name, email, description) VALUES (@test_user_id, @test_org_id, "Test Company", "test@example.com", "A Test organisation description. This company is a complete test.");
 INSERT INTO organisation (user_id, org_id, name, email, description) VALUES (@test_user2_id, @test_org2_id, "Cael's Company", "cael@example.com", "Cael's Test organisation description. This company is a complete test.");
 INSERT INTO vacancies (vacancy_id, org_id, status, title, description) VALUES (@vacancy_1, @test_org_id, true, "Senior Engineer's hair stylist", "Can't work if hair bad.");
