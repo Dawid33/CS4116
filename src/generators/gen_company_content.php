@@ -77,9 +77,9 @@
                             $description = $row['description'];
                             $org_id = $_GET['id'];
 
-                            $sql = "SELECT name FROM organisation WHERE org_id = '" . $row['org_id'] . "';";
+                            $orgSql = "SELECT name FROM organisation WHERE org_id = '" . $row['org_id'] . "';";
 
-                            $org_name_result = mysqli_query($conn, $sql);
+                            $org_name_result = mysqli_query($conn, $orgSql);
 
                             if ($org_name_result) {
                                 $org_name = '<a href="/company.php?id=' . $current_org_id . '">' . $org_name_result->fetch_assoc()['name'] . '</a>';
