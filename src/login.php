@@ -4,6 +4,10 @@
        header("Location: index.php");
     }
 
+    if (isset($_SESSION["user_is_admin"])) {
+        header("Location: index.php");
+     }
+
     $login_errors = array();
 
     if (isset($_POST["login"])) {
@@ -18,12 +22,13 @@
 
         $sql = "SELECT * FROM users WHERE email = '$email'";
         $result = mysqli_query($conn, $sql);
-        $user = mysqli_fetch_array($result, MYSQLI_ASSOC);  
+        $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
         
         if ($user) {
             if ($password == $user["password"]) {
                 session_start();
                 $_SESSION["user"] = $user["user_id"];
+                $_SESSION["user_is_admin"] = $user["is_admin"];
                 header("Location: index.php");
                 die();
             }else{
