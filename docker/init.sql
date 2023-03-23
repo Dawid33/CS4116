@@ -199,7 +199,7 @@ SET @test_org5_id := uuid();
 
 SET @vacancy_5 := uuid();
 SET @vacancy_6 := uuid();
-SET @vacancy7 := uuid();
+SET @vacancy_7 := uuid();
 
 INSERT INTO users (user_id, email, password, first_name, last_name, is_admin, bio) VALUES (@test_user3_id, "t@example.com", "t", "t", "ttt", false, "ttttttttttt");
 INSERT INTO users (user_id, email, password, first_name, last_name, is_admin, bio) VALUES (@test_user4_id, "y@example.com", "y", "y", "yyy", false, "yyyyyyyyyyyyyyy");
