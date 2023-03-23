@@ -12,13 +12,8 @@
                 <h5>Vacancy</h5>
             </div>
             <div class="card-body">
-                <h6 class="card-subtitle mb-2">Company Info</h6>
-                <div>
-                    <?php echo $title ?>
-                </div>
-                <hr>
-                </hr>
-                <h6 class="card-subtitle mb-2">Description</h6>
+                <h5 class="card-subtitle mb-2"><?php echo $title ?></h5>
+                    
                 <div>
                     <?php echo $description ?>
                 </div>
