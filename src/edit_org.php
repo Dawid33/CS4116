@@ -5,6 +5,7 @@
     } 
     $current_user_id = $_SESSION["user"];
     $current_organisation = $_GET['id'];
+    $edit_errors = array();
 
     if (isset($_POST["save"])) {
         $conn = new mysqli("db", "cs4116", "cs4116", "cs4116");
@@ -15,13 +16,25 @@
         }
 
         $description = mysqli_real_escape_string($conn, $_POST["description"]);
-        $sql_update = "UPDATE organisation SET description='$description' WHERE org_id = '$current_organisation'";
+        $name = mysqli_real_escape_string($conn, $_POST["name"]);
+        
+        if (empty($name)) {
+            $error=true;
+        }else{
+            $error=false;
+        }
+
+        if (!$error) {
+        $sql_update = "UPDATE organisation SET name='$name', description='$description' WHERE org_id = '$current_organisation'";
 
         if (($conn->query($sql_update))) {
             header("Location: company.php?id=$current_organisation");
         } else {
             echo $conn->error;
         }
+    } else {
+        $edit_errors["fieldsValidation"] = "Company name is required";
+    }
         
         $conn->close();
     }
@@ -53,12 +66,18 @@
             <div class= "d-md-flex justify-content-center"> 
                 <form action="edit_org.php?id=<?php echo $current_organisation; ?>" method="post">
                     <div class="form-group">
+                        <input type="text" name="name" class="form-control" placeholder="Company Name" value="<?php echo htmlspecialchars($_POST['name'] ?? '', ENT_QUOTES);?>">
+                    </div>
+                    </br>
+                    <div class="form-group">
                         <textarea class="form-control" name="description" placeholder="Company Description" rows="2"><?php echo htmlspecialchars($_POST['description'] ?? '', ENT_QUOTES);?></textarea> 
                     </div>
                     </br>
                     <div class="d-flex justify-content-center">
                         <input class="btn btn-lg" type="submit" name="save" value="Save"></input>
                     </div>
+                    </br>
+                    <?php if(array_key_exists("fieldsValidation", $edit_errors)){ $err = $edit_errors["fieldsValidation"]; print "<div class='text-center alert alert-danger'>$err</div>"; }?>
                 </form>
             </div>
         </div>
