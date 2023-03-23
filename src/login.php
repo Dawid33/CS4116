@@ -4,10 +4,6 @@
        header("Location: index.php");
     }
 
-    if (isset($_SESSION["user_is_admin"])) {
-        header("Location: index.php");
-     }
-
     $login_errors = array();
 
     if (isset($_POST["login"])) {

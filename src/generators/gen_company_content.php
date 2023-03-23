@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <h6 class="card-subtitle mb-2">Company Info</h6>
+                    <h6 class="card-subtitle mb-2">Name</h6>
                         <div>                    
                             <?php echo $org_details["name"]?>
                         </div>
