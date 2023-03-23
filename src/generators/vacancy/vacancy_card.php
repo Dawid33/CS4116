@@ -22,8 +22,12 @@
                 <h6 class="card-subtitle mb-2"> Required Skills</h6>
                 <ul class="list-group">
                     <?php
-                    foreach ($skills as $key => $skill) {
-                        include("skill_row.php");
+                    if (sizeof($skills) > 0) {
+                        foreach ($skills as $key => $skill) {
+                            include("skill_row.php");
+                        }
+                    } else {
+                        echo "No required skills.";
                     }
                     ?>
                 </ul>
