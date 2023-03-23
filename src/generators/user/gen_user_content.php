@@ -12,8 +12,13 @@
     $sql = "SELECT * FROM users WHERE user_id = '$user_id'";
     $result = mysqli_query($conn, $sql);
     $user_details = mysqli_fetch_array($result, MYSQLI_ASSOC);
-    $conn->close();
 
+    $orgSql = "SELECT org_id FROM organisation WHERE user_id = '$user_id'";
+    $orgResult = mysqli_query($conn, $orgSql);
+    $org_details = mysqli_fetch_array($orgResult, MYSQLI_ASSOC);
+    $org_id_for_button = $org_details['org_id'];
+
+    $conn->close();
 ?>
 
 <container>  
@@ -26,9 +31,15 @@
                             <div class="card-header d-flex justify-content-between">
                                 <h5>About</h5> 
                                 <div>
-                                    <?php if($user_id == $_SESSION["user"] || $_SESSION["user_is_admin"] == 1) print '<a href="create_organisation.php" type="button" class="btn btn-submit btn-sm btn-primary">Create Organisation</a>' ?> 
-                                    <?php if($user_id == $_SESSION["user"] || $_SESSION["user_is_admin"] == 1) print "<a href='edit_user.php?id=$user_id' type='button' class='btn btn-submit btn-sm btn-primary'>Edit</a>" ?>
-                                </div>                            </div>
+                                    <?php 
+                                    if (empty($org_details)) {
+                                        if($user_id == $_SESSION["user"] || $_SESSION["user_is_admin"] == 1) print '<a href="create_organisation.php" type="button" class="btn btn-submit btn-sm btn-primary">Create Organisation</a>';
+                                    } else {
+                                        if($user_id == $_SESSION["user"] || $_SESSION["user_is_admin"] == 1) print "<a href='company.php?id=$org_id_for_button' type='button' class='btn btn-submit btn-sm btn-primary'>View Organisation</a>";
+                                    }?> 
+                                    <?php if($user_id == $_SESSION["user"] || $_SESSION["user_is_admin"] == 1) print "<a href='edit_user.php?id=$user_id' type='button' class='btn btn-submit btn-sm btn-primary'>Edit</a>"; ?>
+                                </div>                            
+                            </div>
                             <div class="card-body">
                                 <h6 class="card-subtitle mb-2">Name</h6>
                                 <p class="card-text"> <?php print $user_details["first_name"] ?> <?php print $user_details["last_name"] ?></p>
