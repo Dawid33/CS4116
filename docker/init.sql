@@ -188,3 +188,36 @@ INSERT INTO vacancy_skills (vacancy_id, skill_id) VALUES (@vacancy_2, @cpp_maste
 -- Mr.Test's Qualifications
 
 INSERT INTO qualifications (user_id, qualification_title, qualification_description, qualification_degree, qualification_year) VALUES (@test_user_id, "Professional Liar", "The greatest conman of the 21st century.", "", NOW());
+
+SET @test_user3_id := uuid();
+SET @test_user4_id := uuid();
+SET @test_user5_id := uuid();
+
+SET @test_org3_id := uuid();
+SET @test_org4_id := uuid();
+SET @test_org5_id := uuid();
+
+SET @vacancy_5 := uuid();
+SET @vacancy_6 := uuid();
+SET @vacancy7 := uuid();
+
+INSERT INTO users (user_id, email, password, first_name, last_name, is_admin, bio) VALUES (@test_user3_id, "t@example.com", "t", "t", "ttt", false, "ttttttttttt");
+INSERT INTO users (user_id, email, password, first_name, last_name, is_admin, bio) VALUES (@test_user4_id, "y@example.com", "y", "y", "yyy", false, "yyyyyyyyyyyyyyy");
+INSERT INTO users (user_id, email, password, first_name, last_name, is_admin, bio) VALUES (@test_user5_id, "u@example.com", "u", "u", "uuu", false, "uuuuuuuuuuuuuuu");
+
+INSERT INTO organisation (user_id, org_id, name, email, description) VALUES (@test_user3_id, @test_org3_id, "t Company", "t@example.com", "t Test organisation description.");
+INSERT INTO organisation (user_id, org_id, name, email, description) VALUES (@test_user4_id, @test_org4_id, "y Company", "y@example.com", "y Test organisation description.");
+INSERT INTO organisation (user_id, org_id, name, email, description) VALUES (@test_user5_id, @test_org5_id, "u Company", "u@example.com", "u Test organisation description.");
+
+INSERT INTO vacancies (vacancy_id, org_id, status, title, description) VALUES (@vacancy_5, @test_org3_id, true, "t vac", "t desc.");
+INSERT INTO vacancies (vacancy_id, org_id, status, title, description) VALUES (@vacancy_6, @test_org4_id, true, "y vac", "y desc.");
+INSERT INTO vacancies (vacancy_id, org_id, status, title, description) VALUES (@vacancy_7, @test_org5_id, true, "u vac", "u desc.");
+
+INSERT INTO user_skills (user_id, skill_id) VALUES (@test_user3_id, @driver_license_id);
+INSERT INTO user_skills (user_id, skill_id) VALUES (@test_user4_id, @cpp_master_id);
+INSERT INTO user_skills (user_id, skill_id) VALUES (@test_user5_id, @driver_license_id);
+
+INSERT INTO connections (user_id_first, user_id_second) VALUES (@test_user_id, @test_user3_id);
+INSERT INTO connections (user_id_first, user_id_second) VALUES (@test_user_id, @test_user4_id);
+INSERT INTO connections (user_id_first, user_id_second) VALUES (@test_user_id, @test_user5_id);
+
