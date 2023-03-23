@@ -18,8 +18,6 @@
             $vacancy_skill_result = mysqli_query($conn, $sql);
             if ($vacancy_skill_result == false) {
                 echo "Database error.";
-            } elseif ($vacancy_skill_result->num_rows == 0) {
-                echo "No skills defined.";
             } while ($row = $vacancy_skill_result->fetch_assoc()) {
                 $sql = "SELECT title, skill_id FROM skills WHERE skill_id = '" . $row["skill_id"] . "'";
                 $skill_result = mysqli_query($conn, $sql);
