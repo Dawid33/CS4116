@@ -4,6 +4,7 @@
        header("Location: login.php");
     } 
     $current_user_id = $_SESSION["user"];
+    $current_organisation = $_GET['id'];
 
     if (isset($_POST["save"])) {
         $conn = new mysqli("db", "cs4116", "cs4116", "cs4116");
@@ -11,25 +12,13 @@
         // Check connection
         if ($conn->connect_error) {
             die("Connection failure: " . $conn->connect_error);
-        }   
-
-        $emailSql = "SELECT email FROM users WHERE user_id = '$current_user_id'";
-        $email = mysqli_query($conn, $emailSql);
-        $userEmail = mysqli_fetch_array($email, MYSQLI_ASSOC);
-
-        foreach ($userEmail as $emailData) {
-        $orgSql = "SELECT org_id FROM organisation  WHERE email = '$emailData'";
         }
 
-        $orgResult = mysqli_query($conn, $orgSql);
-        $org = mysqli_fetch_array($orgResult, MYSQLI_ASSOC);
-        $current_org_id = $org["org_id"];
-
         $description = mysqli_real_escape_string($conn, $_POST["description"]);
-        $sql_update = "UPDATE organisation SET description='$description' WHERE org_id = '$current_org_id'";
+        $sql_update = "UPDATE organisation SET description='$description' WHERE org_id = '$current_organisation'";
 
         if (($conn->query($sql_update))) {
-            header("Location: company.php?id=".$current_org_id);
+            header("Location: company.php?id=$current_organisation");
         } else {
             echo $conn->error;
         }
@@ -52,27 +41,7 @@
         <div class="row">
             <div class="d-flex justify-content-between display-6"> WiredIn 
                 <div> 
-                    <a href="company.php?id=<?php 
-                    $conn = new mysqli("db", "cs4116", "cs4116", "cs4116");
-
-                    // Check connection
-                    if ($conn->connect_error) {
-                        die("Connection failure: " . $conn->connect_error);
-                    }   
-            
-                    $emailSql = "SELECT email FROM users WHERE user_id = '$current_user_id'";
-                    $email = mysqli_query($conn, $emailSql);
-                    $userEmail = mysqli_fetch_array($email, MYSQLI_ASSOC);
-            
-                    foreach ($userEmail as $emailData) {
-                    $orgSql = "SELECT org_id FROM organisation  WHERE email = '$emailData'";
-                    }
-            
-                    $orgResult = mysqli_query($conn, $orgSql);
-                    $org = mysqli_fetch_array($orgResult, MYSQLI_ASSOC);
-                    $current_org_id = $org["org_id"];
-                    
-                    print $current_org_id ?>" class="btn btn-lg" role="button">Cancel</a>
+                    <a href="company.php?id=<?php print $current_organisation; ?>" class="btn btn-lg" role="button">Cancel</a>
                 </div>
             </div>
         </div>
@@ -82,7 +51,7 @@
         </br>
         <div class="row">
             <div class= "d-md-flex justify-content-center"> 
-                <form action="edit_org_description.php" method="post">
+                <form action="edit_org_description.php?id=<?php echo $current_organisation; ?>" method="post">
                     <div class="form-group">
                         <textarea class="form-control" name="description" placeholder="Company Description" rows="2"><?php echo htmlspecialchars($_POST['description'] ?? '', ENT_QUOTES);?></textarea> 
                     </div>
