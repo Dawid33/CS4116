@@ -18,6 +18,13 @@
     $org_details = mysqli_fetch_array($orgResult, MYSQLI_ASSOC);
     $org_id_for_button = $org_details['org_id'];
 
+    $connections_search = "SELECT * FROM connections WHERE '$current_user_id' = user_id_first AND '$user_id' = user_id_second";
+    $connections_result = mysqli_query($conn, $connections_search);
+    $already_connected = false;
+    if(mysqli_num_rows($connections_result)){
+        $already_connected = true;
+    }
+
     $conn->close();
 ?>
 
@@ -38,6 +45,17 @@
                                         if($user_id == $_SESSION["user"] || $_SESSION["user_is_admin"] == 1) print "<a href='company.php?id=$org_id_for_button' type='button' class='btn btn-submit btn-sm btn-primary'>View Organisation</a>";
                                     }?> 
                                     <?php if($user_id == $_SESSION["user"] || $_SESSION["user_is_admin"] == 1) print "<a href='edit_user.php?id=$user_id' type='button' class='btn btn-submit btn-sm btn-primary'>Edit</a>"; ?>
+                                    <?php if($already_connected==false && $user_id!=$current_user_id) { ?>
+                                        <form action="add_connection.php" method="post">
+                                            <input type="hidden" value="<?php echo $user_id ?>" name="user_id"></input>
+                                            <input type='submit' name="add_friend" value="Add Connection" class='btn btn-submit btn-sm btn-primary'></input>
+                                        </form>
+                                    <?php } else if($already_connected==true) { ?>
+                                        <form action="remove_connection.php" method="post">
+                                            <input type="hidden" value="<?php echo $user_id ?>" name="user_id"></input>
+                                            <input type='submit' name="add_friend" value="Remove Connection" class='btn btn-remove btn-sm btn-danger'></input>
+                                        </form>
+                                    <?php } ?>
                                 </div>                            
                             </div>
                             <div class="card-body">

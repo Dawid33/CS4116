@@ -53,7 +53,7 @@
 
 <div class="card">
     <div class=card-header>
-        <h5>Vacancies</h5>
+        <h5>Search Results</h5>
     </div>
     <div class="card-body">
        <div id="results-pane">
