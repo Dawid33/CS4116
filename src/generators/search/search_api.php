@@ -1,4 +1,5 @@
 <?php
+session_start();
 $skill_params = [];
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $search_term = $_GET['search-term'];
@@ -51,7 +52,19 @@ if ($search_type == "users") {
                 }
             }
 
+            $user_id = $row["user_id"];
+            $current_user_id = $_SESSION["user"];
+            $friend_search = "SELECT * FROM connections WHERE '$current_user_id' = user_id_first AND '$user_id' = user_id_second";
+            $friend_result = mysqli_query($conn, $friend_search);
+            $already_friends = false;
+
+            if(mysqli_num_rows($friend_result)){
+                $already_friends = true;
+            }
+
             if (!$has_failed) {
+                $user_id = $row["user_id"];
+                $already_connected = $already_friends;
                 $title = '<a href="/user.php?id=' . $row['user_id'] . '">' . $row['first_name'] . " " . $row["last_name"] . '</a>';
                 include('search_card.php');
             }
