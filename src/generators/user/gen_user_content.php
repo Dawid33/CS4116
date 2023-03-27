@@ -138,8 +138,9 @@
         <div class="col-3">
             <div id="nav-friends">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header d-flex justify-content-between">
                         <h5>Friends</h5>
+                        <?php if($user_id == $_SESSION["user"] || $_SESSION["user_is_admin"] == 1) print "<a href='search.php?search-type=users' type='button' class='btn btn-submit btn-sm btn-primary'>Add Connection</a>"; ?>
                     </div>
                     <div class="card-body">
                         <ul class="list-group">
