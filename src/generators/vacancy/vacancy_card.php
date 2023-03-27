@@ -35,11 +35,6 @@ $isOwner = 0;
                 <hr>
                 </hr>
                 <h6 class="card-subtitle mb-2"> Required Skills</h6>
-                <?php
-                // if ($isOwner == 1 || $_SESSION["user_is_admin"] == 1) {
-                //         include("add_skills_to_vacancy_caller.php");
-                //     }
-                ?>
                     <ul class="list-group">
                     <?php
                     if (sizeof($skills) > 0) {
@@ -51,6 +46,11 @@ $isOwner = 0;
                     }
                     ?>
                 </ul>
+                <?php
+                if ($isOwner == 1 || $_SESSION["user_is_admin"] == 1) {
+                        include("add_skills_to_vacancy_caller.php");
+                    }
+                ?>
             </div>
         </div>
     </div>
