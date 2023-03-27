@@ -12,11 +12,13 @@
         <?php if($search_type == "users" && $already_connected==false && $user_id!=$_SESSION["user"]) { ?>
             <form action="add_connection.php" method="post">
                 <input type="hidden" value="<?php echo $user_id ?>" name="user_id"></input>
+                <input type="hidden" value="search" name="location"></input>
                 <input type='submit' name="add_friend" value="Add Connection" class='btn btn-submit btn-sm btn-primary'></input>
             </form>
         <?php } else if($search_type == "users" && $user_id!=$_SESSION["user"]) { ?>
             <form action="remove_connection.php" method="post">
                 <input type="hidden" value="<?php echo $user_id ?>" name="user_id"></input>
+                <input type="hidden" value="search" name="location"></input>
                 <input type='submit' name="add_friend" value="Remove Connection" class='btn btn-submit btn-sm btn-danger'></input>
             </form>
         <?php } ?>
