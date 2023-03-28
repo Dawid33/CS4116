@@ -1,5 +1,9 @@
-<hr>
-<form action="add_skills_to_vacancy.php" method="post">
+<hr></hr>
+<?php 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+?>
+<form action="vacancy_skills.php" method="post">
         <label> Add Skill:
             <select class="form-select form-select-sm" name="skill_id" id="skill_id">
                 <?php
@@ -8,7 +12,9 @@
 
                     if ($skills == false) {
                         echo "Database error.";
-                    } while ($skill = $skills->fetch_assoc()) {
+                    } 
+                    
+                    while ($skill = $skills->fetch_assoc()) {
                         echo "<option name=\"skill_id\" value=\"" . $skill['skill_id'] . "\"> " . $skill['title'] . "</option>";
                     }
                 ?>
