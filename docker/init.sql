@@ -119,13 +119,27 @@ CREATE TABLE `vacancies` (
 -- cs4116.vacancy_skills definition
 
 CREATE TABLE `vacancy_skills` (
+  `vacancy_skills_id` varchar(255) NOT NULL DEFAULT (uuid()),
   `vacancy_id` varchar(255) NOT NULL,
   `skill_id` varchar(255) NOT NULL,
-  `vacancy_skill_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT (uuid()),
+  PRIMARY KEY (`vacancy_skills_id`),
   KEY `vacancy_skills_FK` (`vacancy_id`),
   KEY `vacancy_skills_FK_1` (`skill_id`),
   CONSTRAINT `vacancy_skills_FK` FOREIGN KEY (`vacancy_id`) REFERENCES `vacancies` (`vacancy_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `vacancy_skills_FK_1` FOREIGN KEY (`skill_id`) REFERENCES `skills` (`skill_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- cs4116.organisation_employees definition
+
+CREATE TABLE `organisation_employees` (
+  `employee_connection_id` varchar(255) NOT NULL DEFAULT (uuid()),
+  `user_id` varchar(255) DEFAULT NULL,
+  `org_id` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`employee_connection_id`),
+  KEY `organisation_employees_FK` (`org_id`),
+  KEY `organisation_employees_FK_1` (`user_id`),
+  CONSTRAINT `organisation_employees_FK` FOREIGN KEY (`org_id`) REFERENCES `organisation` (`org_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `organisation_employees_FK_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Test user dummy data
@@ -234,4 +248,14 @@ INSERT INTO user_skills (user_id, skill_id) VALUES (@test_user5_id, @driver_lice
 INSERT INTO connections (user_id_first, user_id_second) VALUES (@test_user_id, @test_user3_id);
 INSERT INTO connections (user_id_first, user_id_second) VALUES (@test_user_id, @test_user4_id);
 INSERT INTO connections (user_id_first, user_id_second) VALUES (@test_user_id, @test_user5_id);
+
+-- Setting an employee of test company
+
+SET @employee_id_1 := uuid();
+SET @employee_id_2 := uuid();
+SET @employee_id_3 := uuid();
+
+INSERT INTO organisation_employees (employee_connection_id, user_id, org_id) VALUES (@employee_id_1, @test_user_id, @test_org_id);
+INSERT INTO organisation_employees (employee_connection_id, user_id, org_id) VALUES (@employee_id_2, @test_user2_id, @test_org_id);
+INSERT INTO organisation_employees (employee_connection_id, user_id, org_id) VALUES (@employee_id_3, @hjass_user_id, @test_org_id);
 
