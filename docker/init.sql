@@ -119,12 +119,27 @@ CREATE TABLE `vacancies` (
 -- cs4116.vacancy_skills definition
 
 CREATE TABLE `vacancy_skills` (
+  `vacancy_skills_id` varchar(255) NOT NULL DEFAULT (uuid()),
   `vacancy_id` varchar(255) NOT NULL,
   `skill_id` varchar(255) NOT NULL,
+  PRIMARY KEY (`vacancy_skills_id`),
   KEY `vacancy_skills_FK` (`vacancy_id`),
   KEY `vacancy_skills_FK_1` (`skill_id`),
   CONSTRAINT `vacancy_skills_FK` FOREIGN KEY (`vacancy_id`) REFERENCES `vacancies` (`vacancy_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `vacancy_skills_FK_1` FOREIGN KEY (`skill_id`) REFERENCES `skills` (`skill_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- cs4116.organisation_employees definition
+
+CREATE TABLE `organisation_employees` (
+  `employee_connection_id` varchar(255) NOT NULL DEFAULT (uuid()),
+  `user_id` varchar(255) DEFAULT NULL,
+  `org_id` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`employee_connection_id`),
+  KEY `organisation_employees_FK` (`org_id`),
+  KEY `organisation_employees_FK_1` (`user_id`),
+  CONSTRAINT `organisation_employees_FK` FOREIGN KEY (`org_id`) REFERENCES `organisation` (`org_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `organisation_employees_FK_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Test user dummy data
