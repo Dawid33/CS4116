@@ -123,6 +123,7 @@ CREATE TABLE `vacancy_skills` (
   `vacancy_id` varchar(255) NOT NULL,
   `skill_id` varchar(255) NOT NULL,
   PRIMARY KEY (`vacancy_skills_id`),
+    `vacancy_skill_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT (uuid()), -- replace with new primary key?
   KEY `vacancy_skills_FK` (`vacancy_id`),
   KEY `vacancy_skills_FK_1` (`skill_id`),
   CONSTRAINT `vacancy_skills_FK` FOREIGN KEY (`vacancy_id`) REFERENCES `vacancies` (`vacancy_id`) ON DELETE CASCADE ON UPDATE CASCADE,
