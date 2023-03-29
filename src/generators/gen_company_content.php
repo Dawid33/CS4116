@@ -111,7 +111,7 @@
                 <div class="card-header">
                     <h5>Company Employees</h5>
                     <?php 
-                        print '<a onClick=\'return confirm("Are you sure you want to become an employee?")\' href="/add_employee.php?id=' . $current_user_id . "&org_id=" . $current_org_id . '">' . 'link profile to organisation' . '</a>';   ?>      
+                        print '<a href="/add_employee.php?id=' . $current_user_id . "&org_id=" . $current_org_id . '">' . 'link profile to organisation' . '</a>';   ?>      
                 </div>
                 <div class="card-body">
                     <?php
@@ -134,7 +134,7 @@
                             $employeeResult = $conn->query($employeeSql);
                             $employee_details = mysqli_fetch_array($employeeResult, MYSQLI_ASSOC);
                             $employee_connection_id = $employee_details["employee_connection_id"];
-                                include('employee_card.php');
+                            include('employee_card.php');
                             }         
                     ?>
                 </div>
