@@ -242,3 +242,13 @@ INSERT INTO connections (user_id_first, user_id_second) VALUES (@test_user_id, @
 INSERT INTO connections (user_id_first, user_id_second) VALUES (@test_user_id, @test_user4_id);
 INSERT INTO connections (user_id_first, user_id_second) VALUES (@test_user_id, @test_user5_id);
 
+-- Setting an employee of test company
+
+SET @employee_id_1 := uuid();
+SET @employee_id_2 := uuid();
+SET @employee_id_3 := uuid();
+
+INSERT INTO organisation_employees (employee_connection_id, user_id, org_id) VALUES (@employee_id_1, @test_user_id, @test_org_id);
+INSERT INTO organisation_employees (employee_connection_id, user_id, org_id) VALUES (@employee_id_2, @test_user2_id, @test_org_id);
+INSERT INTO organisation_employees (employee_connection_id, user_id, org_id) VALUES (@employee_id_3, @hjass_user_id, @test_org_id);
+
