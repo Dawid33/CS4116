@@ -105,6 +105,45 @@
     
 </div>
 
+<!-- <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Company Employees</h5>
+                </div>
+                <div class="card-body">
+                    <?php
+                        $conn = new mysqli("db", "cs4116", "cs4116", "cs4116");
+
+                        if ($conn->connect_error) {
+                            die("Connection failure: " . $conn->connect_error);
+                        }
+
+                        $sql = "SELECT * FROM organisation_employees WHERE org_id = '" . $_GET['id'] . "' ORDER BY creation_date";
+                        $result = $conn->query($sql);
+
+                        while($row = $result->fetch_assoc()) {
+                            $vacancy_id = $row['vacancy_id'];
+                            $title = '<a href="/vacancy.php?id=' . $row['vacancy_id'] . '">' . $row['title'] . '</a>';
+                            $description = $row['description'];
+                            $org_id = $_GET['id'];
+
+                            $orgSql = "SELECT name FROM organisation WHERE org_id = '" . $row['org_id'] . "';";
+
+                            $org_name_result = mysqli_query($conn, $orgSql);
+
+                            if ($org_name_result) {
+                                $org_name = '<a href="/company.php?id=' . $current_org_id . '">' . $org_name_result->fetch_assoc()['name'] . '</a>';
+                                include('employee_card.php');
+                            }
+                        }         
+                    ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
 <style>
     .btn-submit {
         background-color: #242337;
