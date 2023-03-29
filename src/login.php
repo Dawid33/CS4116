@@ -25,7 +25,13 @@
                 session_start();
                 $_SESSION["user"] = $user["user_id"];
                 $_SESSION["user_is_admin"] = $user["is_admin"];
-                header("Location: index.php");
+                $_SESSION["is_banned"] = $user["is_banned"];
+
+                if ($_SESSION["is_banned"]) {
+                    header("Location: banned.php");
+                } else {
+               header("Location: index.php");
+                }
                 die();
             }else{
                 $login_errors["passwordValidation"] = "Password does not match";

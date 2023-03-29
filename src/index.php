@@ -1,7 +1,11 @@
 <?php 
     session_start();
     if (!isset($_SESSION["user"])) {
+        if ($_SESSION["is_banned"]) {
+            header("Location: banned.php");
+        } else {
        header("Location: login.php");
+        }
     }
     
     if (!isset($_SESSION["user_is_admin"])) {

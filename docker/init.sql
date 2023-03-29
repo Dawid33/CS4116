@@ -175,7 +175,7 @@ INSERT INTO vacancies (vacancy_id, org_id, status, title, description) VALUES (@
 SET @hjass_user_id := uuid();
 INSERT INTO users (user_id, email, password, first_name, last_name, is_admin) VALUES (@hjass_user_id, "hjass@example.com", "hjass", "Hugh", "Jass", false);
 SET @bdover_user_id := uuid();
-INSERT INTO users (user_id, email, password, first_name, last_name, is_admin) VALUES (@bdover_user_id, "bdover@example.com", "bdover", "Ben", "Dover", false);
+INSERT INTO users (user_id, email, password, first_name, last_name, is_admin, is_banned) VALUES (@bdover_user_id, "bdover@example.com", "bdover", "Ben", "Dover", false, 1);
 
 INSERT INTO connections (user_id_first, user_id_second) VALUES (@test_user_id, @hjass_user_id);
 INSERT INTO connections (user_id_first, user_id_second) VALUES (@test_user_id, @bdover_user_id);
@@ -259,4 +259,3 @@ SET @employee_id_3 := uuid();
 INSERT INTO organisation_employees (employee_connection_id, user_id, org_id) VALUES (@employee_id_1, @test_user_id, @test_org_id);
 INSERT INTO organisation_employees (employee_connection_id, user_id, org_id) VALUES (@employee_id_2, @test_user2_id, @test_org_id);
 INSERT INTO organisation_employees (employee_connection_id, user_id, org_id) VALUES (@employee_id_3, @hjass_user_id, @test_org_id);
-
