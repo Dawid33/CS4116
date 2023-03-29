@@ -197,14 +197,21 @@ INSERT INTO user_skills (user_id, skill_id) VALUES (@test_user_id, @cpp_master_i
 
 -- Vacancy Skills
 
-INSERT INTO vacancy_skills (vacancy_id, skill_id) VALUES (@vacancy_1, @driver_license_id);
-INSERT INTO vacancy_skills (vacancy_id, skill_id) VALUES (@vacancy_1, @cpp_master_id);
+SET @vacancyskills1 := uuid();
+SET @vacancyskills2 := uuid();
+SET @vacancyskills3 := uuid();
+SET @vacancyskills4 := uuid();
+SET @vacancyskills5 := uuid();
+SET @vacancyskills6 := uuid();
 
-INSERT INTO vacancy_skills (vacancy_id, skill_id) VALUES (@vacancy_2, @cpp_master_id);
+INSERT INTO vacancy_skills (vacancy_skill_id, vacancy_id, skill_id) VALUES (@vacancyskills1, @vacancy_1, @driver_license_id);
+INSERT INTO vacancy_skills (vacancy_skill_id, vacancy_id, skill_id) VALUES (@vacancyskills2, @vacancy_1, @cpp_master_id);
 
-INSERT INTO vacancy_skills (vacancy_id, skill_id) VALUES (@vacancy_3, @cpp_master_id);
-INSERT INTO vacancy_skills (vacancy_id, skill_id) VALUES (@vacancy_3, @keyboard_jockey);
-INSERT INTO vacancy_skills (vacancy_id, skill_id) VALUES (@vacancy_3, @driver_license_id);
+INSERT INTO vacancy_skills (vacancy_skill_id, vacancy_id, skill_id) VALUES (@vacancyskills3, @vacancy_2, @cpp_master_id);
+
+INSERT INTO vacancy_skills (vacancy_skill_id, vacancy_id, skill_id) VALUES (@vacancyskills4, @vacancy_3, @cpp_master_id);
+INSERT INTO vacancy_skills (vacancy_skill_id, vacancy_id, skill_id) VALUES (@vacancyskills5, @vacancy_3, @keyboard_jockey);
+INSERT INTO vacancy_skills (vacancy_skill_id, vacancy_id, skill_id) VALUES (@vacancyskills6, @vacancy_3, @driver_license_id);
 
 -- Mr.Test's Qualifications
 
