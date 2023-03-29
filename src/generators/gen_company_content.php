@@ -4,6 +4,7 @@
     $current_org_id = $_GET["id"];
     $isOwner = 0;
     $isAdmin = $_SESSION["user_is_admin"];
+    $ownerName = "No user specified";
 
     $conn = new mysqli("db", "cs4116", "cs4116", "cs4116");
 
@@ -14,11 +15,16 @@
     $userSql = "SELECT user_id FROM organisation WHERE org_id = '$current_org_id'";
     $userResult = $conn->query($userSql);
     
-    while($row = $userResult->fetch_assoc())
-    {
+    while($row = $userResult->fetch_assoc()) {
         if ($row["user_id"] == $current_user_id) {
             $isOwner = 1;
         }
+
+        $ownerNameSql = "SELECT first_name, last_name FROM users WHERE user_id = '{$row["user_id"]}'";
+        $ownerNameResult = $conn->query($ownerNameSql);
+        $user_details = mysqli_fetch_array($ownerNameResult, MYSQLI_ASSOC);
+        $ownerName = $user_details["first_name"] . " " . $user_details["last_name"];
+
     }
 
     $orgSql = "SELECT name, description FROM organisation WHERE org_id = '$current_org_id'";
@@ -48,6 +54,11 @@
                     <h6 class="card-subtitle mb-2">Description</h6>
                         <div>                    
                             <?php echo $org_details["description"]?>
+                        </div>
+                        <hr></hr>
+                    <h6 class="card-subtitle mb-2">Owner</h6>
+                        <div>                    
+                            <?php echo $ownerName?>
                         </div>
                 </div>
             </div>
