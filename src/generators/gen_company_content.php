@@ -108,10 +108,11 @@
 <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header d-flex justify-content-between">
                     <h5>Company Employees</h5>
                     <?php 
-                        print '<a href="/add_employee.php?id=' . $current_user_id . "&org_id=" . $current_org_id . '">' . 'link profile to organisation' . '</a>';   ?>      
+                        print '<a href="/add_employee.php?id=' . $current_user_id . "&org_id=" . $current_org_id . '"  type="button" class="btn btn-submit btn-sm btn-primary">' . 'link profile to organisation' . '</a>';   
+                    ?>
                 </div>
                 <div class="card-body">
                     <?php
@@ -124,6 +125,9 @@
                         $sql = "SELECT * FROM organisation_employees WHERE org_id = '" . $_GET['id'] . "'";
                         $result = $conn->query($sql);
 
+                        if($result->num_rows == 0) {
+                            print "This company has no employees";
+                            } else {
                         while($row = $result->fetch_assoc()) {
                             $userSql = "SELECT first_name, last_name FROM users WHERE user_id = '" . $row['user_id'] . "'";
                             $userResult = $conn->query($userSql);
@@ -134,7 +138,8 @@
                             $employeeResult = $conn->query($employeeSql);
                             $employee_details = mysqli_fetch_array($employeeResult, MYSQLI_ASSOC);
                             $employee_connection_id = $employee_details["employee_connection_id"];
-                            include('employee_card.php');
+                                include('employee_card.php');
+                            }
                             }         
                     ?>
                 </div>
