@@ -5,6 +5,7 @@
     $isOwner = 0;
     $isAdmin = $_SESSION["user_is_admin"];
     $ownerName = "No user specified";
+    $isAnEmployee = 0;
 
     $conn = new mysqli("db", "cs4116", "cs4116", "cs4116");
 
@@ -134,6 +135,11 @@
                             while($row2 = $userResult->fetch_assoc()) {
                                 $name = '<a href="/user.php?id=' . $row['user_id'] . '">' . $row2['first_name'] . " " . $row2['last_name'] . '</a>';
                             }
+
+                            if ($current_user_id == $row['user_id']) {
+                                $isAnEmployee = 1;
+                            }
+
                             $employeeSql = "SELECT employee_connection_id FROM organisation_employees WHERE user_id = '" . $row['user_id'] . "'";
                             $employeeResult = $conn->query($employeeSql);
                             $employee_details = mysqli_fetch_array($employeeResult, MYSQLI_ASSOC);
