@@ -110,6 +110,8 @@
             <div class="card">
                 <div class="card-header">
                     <h5>Company Employees</h5>
+                    <?php 
+                        print '<a onClick=\'return confirm("Are you sure you want to become an employee?")\' href="/add_employee.php?id=' . $current_user_id . "&org_id=" . $current_org_id . '">' . 'link profile to organisation' . '</a>';   ?>      
                 </div>
                 <div class="card-body">
                     <?php
@@ -128,6 +130,10 @@
                             while($row2 = $userResult->fetch_assoc()) {
                                 $name = '<a href="/user.php?id=' . $row['user_id'] . '">' . $row2['first_name'] . " " . $row2['last_name'] . '</a>';
                             }
+                            $employeeSql = "SELECT employee_connection_id FROM organisation_employees WHERE user_id = '" . $row['user_id'] . "'";
+                            $employeeResult = $conn->query($employeeSql);
+                            $employee_details = mysqli_fetch_array($employeeResult, MYSQLI_ASSOC);
+                            $employee_connection_id = $employee_details["employee_connection_id"];
                                 include('employee_card.php');
                             }         
                     ?>
