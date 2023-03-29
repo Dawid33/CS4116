@@ -1,8 +1,4 @@
 <hr></hr>
-<?php 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-?>
 <form action="vacancy_skills.php" method="post">
         <label> Add Skill:
             <select class="form-select form-select-sm" name="skill_id" id="skill_id">

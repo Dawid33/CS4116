@@ -1,7 +1,5 @@
 <?php
 
-//issue is somewhere here.
-
 use LDAP\Result;
 
     $vacancy_id = $_POST["vacancy_id"];
