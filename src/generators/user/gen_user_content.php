@@ -40,12 +40,12 @@
                                 <div>
                                     <?php 
                                     if (empty($org_details)) {
-                                        if($user_id == $_SESSION["user"] || $_SESSION["user_is_admin"] == 1) print '<a href="create_organisation.php" type="button" class="btn btn-submit btn-sm btn-primary">Create Organisation</a>';
+                                        if($user_id == $_SESSION["user"] || $_SESSION["user_is_admin"] == 1) print '<a href="create_organisation.php" type="button" class="mb-1 btn btn-submit btn-sm btn-primary">Create Organisation</a>';
                                     } else {
-                                        if($user_id == $_SESSION["user"] || $_SESSION["user_is_admin"] == 1) print "<a href='company.php?id=$org_id_for_button' type='button' class='btn btn-submit btn-sm btn-primary'>View Organisation</a>";
+                                        if($user_id == $_SESSION["user"] || $_SESSION["user_is_admin"] == 1) print "<a href='company.php?id=$org_id_for_button' type='button' class='mb-1 btn btn-submit btn-sm btn-primary'>View Organisation</a>";
                                     }?> 
-                                    <?php if($user_id == $_SESSION["user"] || $_SESSION["user_is_admin"] == 1) print "<a href='edit_user.php?id=$user_id' type='button' class='btn btn-submit btn-sm btn-primary'>Edit</a>"; ?>
-                                    <?php if($already_connected==false && $user_id!=$current_user_id) { ?>
+                                    <?php if($user_id == $_SESSION["user"] || $_SESSION["user_is_admin"] == 1) print "<a href='edit_user.php?id=$user_id' type='button' class='mb-1 btn btn-submit btn-sm btn-primary'>Edit</a>"; ?>
+                                    <?php if($already_connected==false && $user_id!=$current_user_id && $_SESSION["user_is_admin"]!=1) { ?>
                                         <form action="add_connection.php" method="post">
                                             <input type="hidden" value="<?php echo $user_id ?>" name="user_id"></input>
                                             <input type="hidden" value="profile" name="location"></input>
@@ -160,7 +160,7 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
                         <h5>Friends</h5>
-                        <?php if($user_id == $_SESSION["user"] || $_SESSION["user_is_admin"] == 1) print "<a href='search.php?search-type=users' type='button' class='btn btn-submit btn-sm btn-primary'>Make Connections</a>"; ?>
+                        <?php if($user_id == $_SESSION["user"] || $_SESSION["user_is_admin"] == 1) print "<a href='search.php?search-type=users' type='button' class='mb-1 btn btn-submit btn-sm btn-primary'>Connections</a>"; ?>
                     </div>
                     <div class="card-body">
                         <ul class="list-group">
