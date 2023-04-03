@@ -230,17 +230,17 @@ SET @vacancy_5 := uuid();
 SET @vacancy_6 := uuid();
 SET @vacancy_7 := uuid();
 
-INSERT INTO users (user_id, email, password, first_name, last_name, is_admin, bio) VALUES (@test_user3_id, "t@example.com", "t", "t", "ttt", false, "ttttttttttt");
-INSERT INTO users (user_id, email, password, first_name, last_name, is_admin, bio) VALUES (@test_user4_id, "y@example.com", "y", "y", "yyy", false, "yyyyyyyyyyyyyyy");
-INSERT INTO users (user_id, email, password, first_name, last_name, is_admin, bio) VALUES (@test_user5_id, "u@example.com", "u", "u", "uuu", false, "uuuuuuuuuuuuuuu");
+INSERT INTO users (user_id, email, password, first_name, last_name, is_admin, bio) VALUES (@test_user3_id, "dawid@example.com", "test", "Dawid", "Sobczak", false, "Test Bio");
+INSERT INTO users (user_id, email, password, first_name, last_name, is_admin, bio) VALUES (@test_user4_id, "john@example.com", "test", "John", "Walsh", false, "Test Bio");
+INSERT INTO users (user_id, email, password, first_name, last_name, is_admin, bio) VALUES (@test_user5_id, "tomek@example.com", "test", "Tomek", "Zajas", false, "Test Bio");
 
-INSERT INTO organisation (user_id, org_id, name, email, description) VALUES (@test_user3_id, @test_org3_id, "t Company", "t@example.com", "t Test organisation description.");
-INSERT INTO organisation (user_id, org_id, name, email, description) VALUES (@test_user4_id, @test_org4_id, "y Company", "y@example.com", "y Test organisation description.");
-INSERT INTO organisation (user_id, org_id, name, email, description) VALUES (@test_user5_id, @test_org5_id, "u Company", "u@example.com", "u Test organisation description.");
+INSERT INTO organisation (user_id, org_id, name, email, description) VALUES (@test_user3_id, @test_org3_id, "Microsoft", "m@example.com", "Dawid hates my OS");
+INSERT INTO organisation (user_id, org_id, name, email, description) VALUES (@test_user4_id, @test_org4_id, "Apple", "a@example.com", "Daeid hates our phones");
+INSERT INTO organisation (user_id, org_id, name, email, description) VALUES (@test_user5_id, @test_org5_id, "Netflix", "n@example.com", "Blockbuster killers");
 
-INSERT INTO vacancies (vacancy_id, org_id, status, title, description) VALUES (@vacancy_5, @test_org3_id, true, "t vac", "t desc.");
-INSERT INTO vacancies (vacancy_id, org_id, status, title, description) VALUES (@vacancy_6, @test_org4_id, true, "y vac", "y desc.");
-INSERT INTO vacancies (vacancy_id, org_id, status, title, description) VALUES (@vacancy_7, @test_org5_id, true, "u vac", "u desc.");
+INSERT INTO vacancies (vacancy_id, org_id, status, title, description) VALUES (@vacancy_5, @test_org3_id, true, "Senior Software Engineer", "We need experienced software engineers");
+INSERT INTO vacancies (vacancy_id, org_id, status, title, description) VALUES (@vacancy_6, @test_org4_id, true, "Junior Software Engineer", "Entry level junior position");
+INSERT INTO vacancies (vacancy_id, org_id, status, title, description) VALUES (@vacancy_7, @test_org5_id, true, "Software Engineer Intern", "Summer internship for computer science students");
 
 INSERT INTO user_skills (user_id, skill_id) VALUES (@test_user3_id, @driver_license_id);
 INSERT INTO user_skills (user_id, skill_id) VALUES (@test_user4_id, @cpp_master_id);

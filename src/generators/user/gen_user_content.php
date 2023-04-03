@@ -28,6 +28,10 @@
     $conn->close();
 ?>
 
+<head>
+    <link href="css/button.css" rel="stylesheet" type="text/css">
+</head>
+
 <container>  
     <div class="row">
         <div class="col">
@@ -208,7 +212,7 @@
         </div>
     </div>
 </container>
-<style>
+<!-- <style>
     .btn-submit {
         background-color: #242337;
         color: aliceblue;
@@ -219,4 +223,4 @@
     .btn-remove {
         background-color: #E24F3D;
     }
-</style>
+</style> -->

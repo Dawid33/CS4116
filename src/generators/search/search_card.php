@@ -19,7 +19,7 @@
             <form action="remove_connection.php" method="post">
                 <input type="hidden" value="<?php echo $user_id ?>" name="user_id"></input>
                 <input type="hidden" value="search" name="location"></input>
-                <input type='submit' name="add_friend" value="Remove Connection" class='btn btn-submit btn-sm btn-danger'></input>
+                <input type='submit' name="add_friend" value="Remove Connection" class='btn btn-remove btn-sm btn-danger'></input>
             </form>
         <?php } ?>
     </div>

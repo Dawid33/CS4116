@@ -1,3 +1,7 @@
+<head>
+    <link href="css/button.css" rel="stylesheet" type="text/css">
+</head>
+
 <content>
     <?php
         $conn = new mysqli("db", "cs4116", "cs4116", "cs4116");
