@@ -57,6 +57,7 @@
         $row_count_result = mysqli_query($conn, $query);
         
         $total = intval($row_count_result->fetch_assoc()["COUNT(*)"]);
+
         $per_page = 5;
         if ($_GET['page']) {
             $cur_page = $_GET['page'];
@@ -67,7 +68,9 @@
 
         $pagination = new Pagination($cur_page, $total, $per_page);
         $offset = $pagination->offSet();
-        $query = "SELECT org_id, vacancy_id, title, creation_date, description FROM vacancies ORDER BY creation_date ASC LIMIT {$offset}, {$per_page}";
+    
+        $query = "SELECT org_id, vacancy_id, title, creation_date, description FROM vacancies LIMIT $offset, $per_page";
+
         $result = mysqli_query($conn, $query);
 
         $failed = false;
