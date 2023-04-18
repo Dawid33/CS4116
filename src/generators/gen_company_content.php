@@ -45,6 +45,10 @@
 
 ?>
 
+<head>
+    <link href="css/button.css" rel="stylesheet" type="text/css">
+</head>
+
 <div class="container">
     <div class="row">
         <div class="col-12">
@@ -113,16 +117,15 @@
             </div>
         </div>
     </div>
-    
-
 <br>
+
 <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <h5>Company Employees</h5>
                     <?php 
-                        if(!$isAnEmployee && !$isAdmin && !$isOwner) print '<a href="/add_employee.php?id=' . $current_user_id . "&org_id=" . $current_org_id . '"  type="button" class="btn btn-submit btn-sm btn-primary">' . 'link profile to organisation' . '</a>';   
+                        if(!$isAnEmployee && !$isAdmin && !$isOwner) print '<a href="/add_employee.php?id=' . $current_user_id . "&org_id=" . $current_org_id . '"  type="button" class="btn btn-submit btn-sm btn-primary">' . 'Link Profile to Organisation' . '</a>';   
                     ?>
                 </div>
                 <div class="card-body">
@@ -155,18 +158,3 @@
         </div>
     </div>
 </div>
-
-</div>
-
-<style>
-    .btn-submit {
-        background-color: #242337;
-        color: aliceblue;
-        outline-color: #242337;
-        border-color: #242337;
-    }
-
-    .btn-remove {
-        background-color: #E24F3D;
-    }
-</style>

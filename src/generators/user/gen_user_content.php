@@ -213,24 +213,29 @@
                     <h5>Employment</h5>
                 </div>
                 <div class="card-body">
-                    
-                    <?php
-                        $employmentSql = "SELECT org_id FROM organisation_employees WHERE user_id = '$current_user_id'";
-                        $employmentResult = $conn->query($employmentSql);
+                    <ul class="list-group">
+                        <?php
+                            $employmentSql = "SELECT * FROM organisation_employees WHERE user_id = '" . $_GET['id'] . "'";
+                            $employmentResult = $conn->query($employmentSql);
 
-                        while($r = $employmentResult->fetch_assoc()){
-                            $test = $r["org_id"];
-                            
-                            $getOrgSql = "SELECT * FROM organisation WHERE org_id = '$test'";
-                            $getOrgResult = $conn->query($getOrgSql);
-                            $org = $getOrgResult->fetch_assoc();
+                            if($employmentResult->num_rows===0){
+                                print "<p class='card-text'> <b>Looking for Work</b> </p>";
+                            }else{
+                                while($r = $employmentResult->fetch_assoc()){
+                                    $test = $r["org_id"];
+                                    
+                                    $getOrgSql = "SELECT * FROM organisation WHERE org_id = '$test'";
+                                    $getOrgResult = $conn->query($getOrgSql);
+                                    $org = $getOrgResult->fetch_assoc();
 
-                            $orgId = $org["org_id"];
-                            print "<p class='card-text'>" . "<a href='company.php?id=$orgId'>" . $org['name'] . "</p>";
-                        }
+                                    $orgId = $org["org_id"];
+                                    print "<li class='list-group-item'><a href='company.php?id=$orgId'>" . "<p class='card-text'>" . $org['name'] . "</p></a></li>";
+                                }
+                            }
 
-                        $conn->close();
-                    ?>
+                            $conn->close();
+                        ?>
+                    </ul>
                 </div>
             </div>
         </div>
