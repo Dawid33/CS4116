@@ -2,10 +2,12 @@
     session_start();
     $current_user_id = $_SESSION["user"];
     $current_org_id = $_GET["id"];
+    
     $isOwner = 0;
     $isAdmin = $_SESSION["user_is_admin"];
-    $ownerName = "No user specified";
     $isAnEmployee = 0;
+
+    $ownerName = "No user specified";
 
     $conn = new mysqli("db", "cs4116", "cs4116", "cs4116");
 
@@ -32,7 +34,15 @@
     $orgResult = $conn->query($orgSql);
     $org_details = mysqli_fetch_array($orgResult, MYSQLI_ASSOC);
 
-    $conn->close();
+
+    $isEmployeeSql = "SELECT * FROM organisation_employees WHERE org_id = '$current_org_id'";
+    $isEmployeeResult = $conn->query($isEmployeeSql);
+    while($r = $isEmployeeResult->fetch_assoc()){
+        if($r["user_id"]==$current_user_id){
+            $isAnEmployee=1;
+        }
+    }
+
 ?>
 
 <div class="container">
@@ -112,41 +122,33 @@
                 <div class="card-header d-flex justify-content-between">
                     <h5>Company Employees</h5>
                     <?php 
-                        print '<a href="/add_employee.php?id=' . $current_user_id . "&org_id=" . $current_org_id . '"  type="button" class="btn btn-submit btn-sm btn-primary">' . 'link profile to organisation' . '</a>';   
+                        if(!$isAnEmployee && !$isAdmin && !$isOwner) print '<a href="/add_employee.php?id=' . $current_user_id . "&org_id=" . $current_org_id . '"  type="button" class="btn btn-submit btn-sm btn-primary">' . 'link profile to organisation' . '</a>';   
                     ?>
                 </div>
                 <div class="card-body">
                     <?php
-                        $conn = new mysqli("db", "cs4116", "cs4116", "cs4116");
-
-                        if ($conn->connect_error) {
-                            die("Connection failure: " . $conn->connect_error);
-                        }
-
                         $sql = "SELECT * FROM organisation_employees WHERE org_id = '" . $_GET['id'] . "'";
                         $result = $conn->query($sql);
-
+ 
                         if($result->num_rows == 0) {
                             print "This company has no employees";
-                            } else {
-                        while($row = $result->fetch_assoc()) {
-                            $userSql = "SELECT first_name, last_name FROM users WHERE user_id = '" . $row['user_id'] . "'";
-                            $userResult = $conn->query($userSql);
-                            while($row2 = $userResult->fetch_assoc()) {
-                                $name = '<a href="/user.php?id=' . $row['user_id'] . '">' . $row2['first_name'] . " " . $row2['last_name'] . '</a>';
-                            }
-
-                            if ($current_user_id == $row['user_id']) {
-                                $isAnEmployee = 1;
-                            }
-
-                            $employeeSql = "SELECT employee_connection_id FROM organisation_employees WHERE user_id = '" . $row['user_id'] . "'";
-                            $employeeResult = $conn->query($employeeSql);
-                            $employee_details = mysqli_fetch_array($employeeResult, MYSQLI_ASSOC);
-                            $employee_connection_id = $employee_details["employee_connection_id"];
-                                include('employee_card.php');
-                            }
-                            }         
+                        } else {
+                            while($row = $result->fetch_assoc()) {
+                                $userSql = "SELECT first_name, last_name FROM users WHERE user_id = '" . $row['user_id'] . "'";
+                                $userResult = $conn->query($userSql);
+                                while($row2 = $userResult->fetch_assoc()) {
+                                    $name = '<a href="/user.php?id=' . $row['user_id'] . '">' . $row2['first_name'] . " " . $row2['last_name'] . '</a>';
+                                }
+    
+                                $employeeSql = "SELECT employee_connection_id FROM organisation_employees WHERE user_id = '" . $row['user_id'] . "'";
+                                $employeeResult = $conn->query($employeeSql);
+                                $employee_details = mysqli_fetch_array($employeeResult, MYSQLI_ASSOC);
+                                $employee_connection_id = $employee_details["employee_connection_id"];
+                                    include('employee_card.php');
+                             }
+                        }         
+                        
+                        $conn->close();
                     ?>
                 </div>
             </div>

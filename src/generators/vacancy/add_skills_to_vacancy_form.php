@@ -17,5 +17,18 @@
             </select>
         </label>
         <input style="display:none" name="vacancy_id" value="<?php echo $vacancy_id ?>">
-        <button type="submit" class="btn btn-submit btn-sm btn-primary"> Add </button>
+        <button type="submit" class="mb-1 btn btn-submit btn-sm btn-primary"> Add </button>
 </form>
+
+<style>
+    .btn-submit {
+        background-color: #242337;
+        color: aliceblue;
+        outline-color: #242337;
+        border-color: #242337;
+    }
+
+    .btn-remove {
+        background-color: #E24F3D;
+    }
+</style>

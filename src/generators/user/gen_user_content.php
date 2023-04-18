@@ -24,8 +24,6 @@
     if(mysqli_num_rows($connections_result)){
         $already_connected = true;
     }
-
-    $conn->close();
 ?>
 
 <head>
@@ -209,18 +207,32 @@
                     </div>
                 </div>
             </div>
+
+            <div class="card mt-4">
+                <div class="card-header d-flex justify-content-between">
+                    <h5>Employment</h5>
+                </div>
+                <div class="card-body">
+                    
+                    <?php
+                        $employmentSql = "SELECT org_id FROM organisation_employees WHERE user_id = '$current_user_id'";
+                        $employmentResult = $conn->query($employmentSql);
+
+                        while($r = $employmentResult->fetch_assoc()){
+                            $test = $r["org_id"];
+                            
+                            $getOrgSql = "SELECT * FROM organisation WHERE org_id = '$test'";
+                            $getOrgResult = $conn->query($getOrgSql);
+                            $org = $getOrgResult->fetch_assoc();
+
+                            $orgId = $org["org_id"];
+                            print "<p class='card-text'>" . "<a href='company.php?id=$orgId'>" . $org['name'] . "</p>";
+                        }
+
+                        $conn->close();
+                    ?>
+                </div>
+            </div>
         </div>
     </div>
 </container>
-<!-- <style>
-    .btn-submit {
-        background-color: #242337;
-        color: aliceblue;
-        outline-color: #242337;
-        border-color: #242337;
-    }
-
-    .btn-remove {
-        background-color: #E24F3D;
-    }
-</style> -->
