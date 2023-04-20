@@ -240,13 +240,13 @@
             </div>
             <?php 
                 if (strcmp($user_id, $current_user_id) == 0 || $_SESSION["user_is_admin"] == 1) {
-                    include("delete_account.php");
+                    include("delete_account_form.php");
                 }
             ?>
             <br>
             <?php 
-                if (strcmp($user_id, $current_user_id) == 0 || $_SESSION["user_is_admin"] == 1) {
-                    include("ban_account.php");
+                if ($_SESSION["user_is_admin"] == 1) {
+                    include("ban_account_form.php");
                 }
             ?>
         </div>
