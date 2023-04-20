@@ -59,6 +59,12 @@
                     <div>
                          <?php if($isAdmin || $isOwner) print "<a href='edit_org.php?id=$current_org_id' type='button' class='btn btn-submit btn-sm btn-primary mr-1'>Edit</a>"?>
                          <?php if($isAdmin || $isOwner) print "<a href='create_vacancy.php?id=$current_org_id' type='button' class='btn btn-submit btn-sm btn-primary'>Add Vacancy</a>"?>
+                         <?php if($isAdmin || $isOwner) { 
+                            include "delete_company.php"; 
+                            print "<a href='delete_company.php?id=$current_org_id' type='button' class='btn btn-remove btn-danger btn-sm'>Delete Company</a>";
+                         }
+                         ?>
+                    
                     </div>
                 </div>
                 <div class="card-body">
