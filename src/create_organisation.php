@@ -35,6 +35,12 @@
                 $select_result = mysqli_query($conn, $sql_select);
                 $org_details = mysqli_fetch_array($select_result, MYSQLI_ASSOC);  
                 $org_location=$org_details["org_id"];
+
+                $sql_insert_connection= "INSERT INTO organisation_employees (user_id, org_id) VALUES ('$current_user_id', '$org_location')";
+                if (!($conn->query($sql_insert_connection))) {
+                    echo $conn->error;
+                }
+
                 header("Location: company.php?id=".$org_location);
                 die();
             }else {

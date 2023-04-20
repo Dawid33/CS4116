@@ -4,7 +4,7 @@
             <div class="card-body d-flex justify-content-between">
                 <h5 class="card-subtitle mb-2"><?php echo $name ?></h5>
                 <?php 
-                if($isAdmin || $isOwner || $isAnEmployee) {
+                if($isAdmin || $isOwner || $isCurrentEmployee) {
                     include("remove_employee_form.php");
                 }
                 ?>
