@@ -20,6 +20,7 @@
                     <li class="navbar-brand"><a class="nav-link active" href="/search.php">Search</a></li>
                     <li class="navbar-brand"><a class="nav-link active" href="/index.php">Home</a></li>
                     <li class="navbar-brand"><a class="nav-link active" href="/user.php?id=<?php print $current_user_id ?>">Profile</a></li>
+                    <li class="navbar-brand"><a class="nav-link active" href="/about.php">About</a></li>
                     <li class="navbar-brand"><a class="nav-link active" href="/logout.php">Logout</a></li>
                 </ul>
             </div>
