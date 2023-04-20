@@ -56,8 +56,9 @@
                 <div class="card-header d-flex justify-content-between">
                     <h5>Company Info</h5>
                     <div>
-                         <?php if($isAdmin || $isOwner) print "<a href='edit_org.php?id=$current_org_id' type='button' class='btn btn-submit btn-sm btn-primary mr-1'>Edit</a>"?>
-                         <?php if($isAdmin || $isOwner) print "<a href='create_vacancy.php?id=$current_org_id' type='button' class='btn btn-submit btn-sm btn-primary'>Add Vacancy</a>"?>
+                            <?php if($isAdmin || $isOwner) print "<a href='edit_org.php?id=$current_org_id' type='button' class='btn btn-submit btn-sm btn-primary mr-1'>Edit</a>"?>
+                            <?php if($isAdmin || $isOwner) print "<a href='create_vacancy.php?id=$current_org_id' type='button' class='btn btn-submit btn-sm btn-primary'>Add Vacancy</a>"?>
+                            <?php if($isAdmin || $isOwner) include("delete_company_form.php");?>
                     </div>
                 </div>
                 <div class="card-body">
