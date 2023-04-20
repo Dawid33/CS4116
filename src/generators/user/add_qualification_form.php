@@ -5,7 +5,7 @@
     <div class="card-body">
         <form action="add_qualification.php" method="post" id="add-qualification">
             <div class="form-group">
-                <input class="form-control" type="text" name="title" placeholder="Title"></input>
+                <input class="form-control" type="text" name="title" placeholder="Title" required></input>
             </div>
             <br>
             <div class="form-group">
