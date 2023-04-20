@@ -6,6 +6,7 @@
     $isOwner = 0;
     $isAdmin = $_SESSION["user_is_admin"];
     $isAnEmployee = 0;
+    $isCurrentEmployee = 0;
 
     $ownerName = "No user specified";
 
@@ -147,6 +148,10 @@
                                 $employeeResult = $conn->query($employeeSql);
                                 $employee_details = mysqli_fetch_array($employeeResult, MYSQLI_ASSOC);
                                 $employee_connection_id = $employee_details["employee_connection_id"];
+                                
+                                if ($current_user_id == $row['user_id']) {
+                                    $isCurrentEmployee = 1;
+                                }
                                     include('employee_card.php');
                              }
                         }         
