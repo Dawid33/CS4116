@@ -21,7 +21,7 @@
             $errors["emailValidation"]="Email is not valid";
         }
         if (strlen($password)<6) {
-            $errors["passwordValidation"]="Password must be at least 6 charactes long";
+            $errors["passwordValidation"]="Password must be at least 6 characters long";
         }
 
         $sql_email = "SELECT * FROM users WHERE email = '$email'";
