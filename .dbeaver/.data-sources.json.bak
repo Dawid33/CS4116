@@ -1,0 +1,31 @@
+{
+	"folders": {},
+	"connections": {
+		"mysql8-187518071cb-888bf4f7ece4f05": {
+			"provider": "mysql",
+			"driver": "mysql8",
+			"name": "cs4116",
+			"save-password": true,
+			"configuration": {
+				"host": "localhost",
+				"port": "3306",
+				"database": "cs4116",
+				"url": "jdbc:mysql://localhost:3306/cs4116",
+				"configurationType": "MANUAL",
+				"type": "dev",
+				"auth-model": "native"
+			}
+		}
+	},
+	"connection-types": {
+		"dev": {
+			"name": "Development",
+			"color": "255,255,255",
+			"description": "Regular development database",
+			"auto-commit": true,
+			"confirm-execute": false,
+			"confirm-data-change": false,
+			"auto-close-transactions": false
+		}
+	}
+}

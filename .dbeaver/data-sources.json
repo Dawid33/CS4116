@@ -1,0 +1,52 @@
+{
+	"folders": {},
+	"connections": {
+		"mysql8-1879e03ccea-e2ebb60e3039f1": {
+			"provider": "mysql",
+			"driver": "mysql8",
+			"name": "cs4116",
+			"save-password": true,
+			"configuration": {
+				"host": "cs4116.com",
+				"port": "3306",
+				"database": "cs4116",
+				"url": "jdbc:mysql://cs4116.com:3306/cs4116",
+				"configurationType": "MANUAL",
+				"type": "dev",
+				"properties": {
+					"connectTimeout": "20000",
+					"rewriteBatchedStatements": "true",
+					"enabledTLSProtocols": "TLSv1,TLSv1.1,TLSv1.2",
+					"allowPublicKeyRetrieval": "true"
+				},
+				"auth-model": "native"
+			}
+		},
+		"mysql8-1879e9898e4-14341ae1a5e1fcf8": {
+			"provider": "mysql",
+			"driver": "mysql8",
+			"name": "cs4116 2",
+			"save-password": true,
+			"configuration": {
+				"host": "cs4116.com",
+				"port": "3306",
+				"database": "cs4116",
+				"url": "jdbc:mysql://cs4116.com:3306/cs4116",
+				"configurationType": "MANUAL",
+				"type": "dev",
+				"auth-model": "native"
+			}
+		}
+	},
+	"connection-types": {
+		"dev": {
+			"name": "Development",
+			"color": "255,255,255",
+			"description": "Regular development database",
+			"auto-commit": true,
+			"confirm-execute": false,
+			"confirm-data-change": false,
+			"auto-close-transactions": false
+		}
+	}
+}

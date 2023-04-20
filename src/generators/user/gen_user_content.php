@@ -233,11 +233,22 @@
                                 }
                             }
 
-                            $conn->close();
+                             $conn->close();
                         ?>
                     </ul>
                 </div>
             </div>
+            <?php 
+                if (strcmp($user_id, $current_user_id) == 0 || $_SESSION["user_is_admin"] == 1) {
+                    include("delete_account.php");
+                }
+            ?>
+            <br>
+            <?php 
+                if (strcmp($user_id, $current_user_id) == 0 || $_SESSION["user_is_admin"] == 1) {
+                    include("ban_account.php");
+                }
+            ?>
         </div>
     </div>
 </container>
