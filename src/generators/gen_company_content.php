@@ -7,6 +7,7 @@
     $isAdmin = $_SESSION["user_is_admin"];
     $isAnEmployee = 0;
     $isCurrentEmployee = 0;
+    $numberOfEmployees = 0;
 
     $ownerName = "No user specified";
 
@@ -138,6 +139,7 @@
                         if($result->num_rows == 0) {
                             print "This company has no employees";
                         } else {
+                            $numberOfEmployees = $result->num_rows;
                             while($row = $result->fetch_assoc()) {
                                 $userSql = "SELECT first_name, last_name FROM users WHERE user_id = '" . $row['user_id'] . "'";
                                 $userResult = $conn->query($userSql);
