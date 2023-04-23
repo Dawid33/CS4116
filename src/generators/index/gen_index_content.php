@@ -11,8 +11,6 @@
             die("Connection failure: " . $conn->connect_error);
         }
 
-        // TODO: Rewrite this Pagination class because I copied it 
-        // verbatim from stack overflow - Dawid
         class Pagination
         {
             public $cur_page;
@@ -54,6 +52,13 @@
         }
 
         $query = "SELECT COUNT(*) FROM vacancies;";
+        if ($_GET['recommended']) {
+            $query = "SELECT COUNT(*) FROM vacancies 
+            WHERE vacancy_id IN (SELECT a.vacancy_id FROM vacancy_skills a
+                WHERE a.skill_id IN (SELECT skill_id FROM user_skills WHERE user_id = '$current_user_id'))	
+            LIMIT 0, 5;";
+        }
+
         $row_count_result = mysqli_query($conn, $query);
         
         $total = intval($row_count_result->fetch_assoc()["COUNT(*)"]);
@@ -70,6 +75,16 @@
         $offset = $pagination->offSet();
     
         $query = "SELECT org_id, vacancy_id, title, creation_date, description FROM vacancies LIMIT $offset, $per_page";
+        $recommended = false;
+        if ($_GET['recommended']) {
+            $recommended = true;
+            $query = "SELECT org_id, vacancy_id, title, creation_date, description FROM vacancies 
+            WHERE vacancy_id IN (SELECT a.vacancy_id FROM vacancy_skills a
+                WHERE a.skill_id IN (SELECT skill_id FROM user_skills WHERE user_id = '$current_user_id'))	
+            LIMIT 0, 5;";
+        } else {
+            $query = "SELECT org_id, vacancy_id, title, creation_date, description FROM vacancies LIMIT $offset, $per_page";
+        }
 
         $result = mysqli_query($conn, $query);
 
@@ -77,8 +92,14 @@
         ?>
         
         <div class="card">
-            <div class=card-header>
-                <h5>Vacancies</h5>
+            <div class="card-header d-flex justify-content-between">
+                    <?php 
+                    ?>
+                <h5>Vacancies </h5>
+                <div>
+                    <a class="mb-1 btn btn-sm btn-<?php if ($recommended) {print "outline-";} ?>primary" href="/index.php" name="options-outlined" autocomplete="off">Default</a>
+                    <a class="mb-1 btn btn-sm btn-<?php if (!$recommended) {print "outline-";} ?>primary" href="/index.php?recommended=true" name="options-outlined" autocomplete="off">Recommended</a>
+                </div>
             </div>
             <div class="card-body">
                 <?php
@@ -112,12 +133,20 @@
     <div id="page-button-container">
         <?php
             if ($cur_page > 1) {
-                print "<a href=/index.php?page=" . ($cur_page - 1) . "> Previous </a></span>";
+                if ($recommended) {
+                    print "<a href=/index.php?recommended=true&page=" . ($cur_page - 1) . "> Previous </a></span>";
+                } else {
+                    print "<a href=/index.php?page=" . ($cur_page - 1) . "> Previous </a></span>";
+                }
             }
             print "<p> {$cur_page} </p>";
 
             if ($pagination->hasNextPage()) {
-                print "<a href=/index.php?page=" . ($cur_page + 1) . "> Next </a>";
+                if ($recommended) {
+                    print "<a href=/index.php?recommended=true&page=" . ($cur_page + 1) . "> Next </a>";
+                } else {
+                    print "<a href=/index.php?page=" . ($cur_page + 1) . "> Next </a>";
+                }
             }
         ?>
     </div>
