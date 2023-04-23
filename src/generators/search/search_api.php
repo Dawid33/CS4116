@@ -20,7 +20,7 @@ if ($conn->connect_error) {
 }
 
 if ($search_type == "users") {
-    $sql = "SELECT * FROM users WHERE first_name LIKE '%" . $search_term . "%' OR last_name LIKE '%" . $search_term . "%'";
+    $sql = "SELECT * FROM users a WHERE a.first_name LIKE '%". $search_term ."%' OR a.last_name LIKE '%". $search_term ."%' OR EXISTS (SELECT * FROM qualifications WHERE user_id = a.user_id and qualification_title LIKE '%". $search_term ."%' )";
     $result = mysqli_query($conn, $sql);
 
     if ($result == false) {
@@ -35,21 +35,25 @@ if ($search_type == "users") {
             $sql = "SELECT * FROM user_skills WHERE user_id= '" . $row['user_id'] . "';";
             $vacancy_skills = mysqli_query($conn, $sql);
 
-            $has_failed = true;
+            $has_matched = false;
             if ($vacancy_skills == false || sizeof($skill_params) == 0) {
-                $has_failed = false;
+                $has_matched = false;
             } else {
                 while ($vac_skill_row = $vacancy_skills->fetch_assoc()) {
                     foreach ($skill_params as $_ => $param) {
                         if (strcmp($vac_skill_row['skill_id'], $param) == 0) {
-                            $has_failed = false;
+                            $has_matched = true;
                             break;
                         }
                     }
-                    if (!$has_failed) {
+                    if (!$has_matched) {
                         break;
                     }
                 }
+            }
+
+            if (sizeof($skill_params) == 0 ) {
+                $has_matched = true;
             }
 
             $user_id = $row["user_id"];
@@ -62,7 +66,7 @@ if ($search_type == "users") {
                 $already_friends = true;
             }
 
-            if (!$has_failed) {
+            if ($has_matched) {
                 $user_id = $row["user_id"];
                 $already_connected = $already_friends;
                 $title = '<a href="/user.php?id=' . $row['user_id'] . '">' . $row['first_name'] . " " . $row["last_name"] . '</a>';

@@ -40,7 +40,7 @@
             echo "Database error.";
           } else {
             while ($skill = $skills->fetch_assoc()) {
-              echo "<div class=checkbox-item><input type=\"checkbox\" name=\"skill_id\" value=\"" . $skill['skill_id'] . "\"> " . $skill['title'] . "</input></div>";
+              echo "<label class=checkbox-item><input type=\"checkbox\" name=\"skill_id\" value=\"" . $skill['skill_id'] . "\"> " . $skill['title'] . "</input></label>";
             }
           }
           ?>
