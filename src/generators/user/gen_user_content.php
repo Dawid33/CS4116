@@ -249,8 +249,13 @@
                             </div>
                             <div class="card-body">
                                 <?php 
-                                    include("delete_account_form.php"); 
-                                    include("ban_account_form.php");
+                                    if($current_user_id!=$user_id){
+                                        include("delete_account_form.php");
+                                        include("ban_account_form.php"); 
+                                    }else{
+                                        include("delete_account_form.php"); 
+                                        print "<p class='card-text'>This is the admin profile page</p>";
+                                    }
                                 ?>
                             </div>
                         </div>

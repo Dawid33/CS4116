@@ -128,7 +128,7 @@
                 <div class="card-header d-flex justify-content-between">
                     <h5>Company Employees</h5>
                     <?php 
-                        if(!$isAnEmployee && $isAdmin && !$isOwner) print '<a href="/add_employee.php?id=' . $current_user_id . "&org_id=" . $current_org_id . '"  type="button" class="btn btn-submit btn-sm btn-primary">' . 'Link Profile to Organisation' . '</a>';   
+                        if(!$isAnEmployee && !$isAdmin && !$isOwner) print '<a href="/add_employee.php?id=' . $current_user_id . "&org_id=" . $current_org_id . '"  type="button" class="btn btn-submit btn-sm btn-primary">' . 'Link Profile to Organisation' . '</a>';   
                     ?>
                 </div>
                 <div class="card-body">
