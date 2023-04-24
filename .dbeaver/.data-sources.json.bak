@@ -1,16 +1,37 @@
 {
 	"folders": {},
 	"connections": {
-		"mysql8-187518071cb-888bf4f7ece4f05": {
+		"mysql8-1879e03ccea-e2ebb60e3039f1": {
 			"provider": "mysql",
 			"driver": "mysql8",
 			"name": "cs4116",
 			"save-password": true,
 			"configuration": {
-				"host": "localhost",
+				"host": "cs4116.com",
 				"port": "3306",
 				"database": "cs4116",
-				"url": "jdbc:mysql://localhost:3306/cs4116",
+				"url": "jdbc:mysql://cs4116.com:3306/cs4116",
+				"configurationType": "MANUAL",
+				"type": "dev",
+				"properties": {
+					"connectTimeout": "20000",
+					"rewriteBatchedStatements": "true",
+					"enabledTLSProtocols": "TLSv1,TLSv1.1,TLSv1.2",
+					"allowPublicKeyRetrieval": "true"
+				},
+				"auth-model": "native"
+			}
+		},
+		"mysql8-1879e9898e4-14341ae1a5e1fcf8": {
+			"provider": "mysql",
+			"driver": "mysql8",
+			"name": "cs4116 2",
+			"save-password": true,
+			"configuration": {
+				"host": "cs4116.com",
+				"port": "3306",
+				"database": "cs4116",
+				"url": "jdbc:mysql://cs4116.com:3306/cs4116",
 				"configurationType": "MANUAL",
 				"type": "dev",
 				"auth-model": "native"

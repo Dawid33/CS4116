@@ -28,10 +28,10 @@
 			"name": "cs4116 2",
 			"save-password": true,
 			"configuration": {
-				"host": "cs4116.com",
+				"host": "localhost",
 				"port": "3306",
 				"database": "cs4116",
-				"url": "jdbc:mysql://cs4116.com:3306/cs4116",
+				"url": "jdbc:mysql://localhost:3306/cs4116",
 				"configurationType": "MANUAL",
 				"type": "dev",
 				"auth-model": "native"
