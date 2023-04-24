@@ -56,12 +56,11 @@
         <div class="col-12">
             <div class="card mb-3">
                 <div class="card-header d-flex justify-content-between">
-                    <h5>Company Info</h5>
-                    <div>
-                            <?php if($isAdmin || $isOwner) print "<a href='edit_org.php?id=$current_org_id' type='button' class='btn btn-submit btn-sm btn-primary mr-1'>Edit</a>"?>
-                            <?php if($isAdmin || $isOwner) print "<a href='create_vacancy.php?id=$current_org_id' type='button' class='btn btn-submit btn-sm btn-primary'>Add Vacancy</a>"?>
-                            <?php if($isAdmin || $isOwner) include("delete_company_form.php");?>
+                    <div class="d-flex">
+                        <h5>Company Info</h5>
+                        <?php if($isAdmin || $isOwner) print "<a href='edit_org.php?id=$current_org_id' type='button' class='mx-2 btn btn-submit btn-sm btn-primary'>Edit Info</a>"?>
                     </div>
+                    <?php if($isAdmin || $isOwner) include("delete_company_form.php");?>
                 </div>
                 <div class="card-body">
                     <h6 class="card-subtitle mb-2">Name</h6>
@@ -86,8 +85,9 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header d-flex justify-content-between">
                     <h5>Company Vacancies</h5>
+                    <?php if($isAdmin || $isOwner) print "<a href='create_vacancy.php?id=$current_org_id' type='button' class='btn btn-submit btn-sm btn-primary'>Add Vacancy</a>"?>
                 </div>
                 <div class="card-body">
                     <?php
