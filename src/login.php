@@ -58,7 +58,7 @@
         <div class="row">
             <div class="d-flex justify-content-between display-6"> <b>WiredIn</b> 
                 <div> 
-                    <a href="register.php" class="btn btn-lg" role="button">Register</a>
+                    <a href="register.php" class="btn btn-submit btn-primary btn-lg" role="button">Register</a>
                 </div>
             </div>
         </div>
@@ -66,8 +66,8 @@
             <div class="d-flex justify-content-center display-4">Welcome to the Community</div>
         </div>
         </br>
-        <div class="row">
-            <div class="d-flex justify-content-center"> 
+        <div class="row justify-content-center">
+            <div class="col-4"> 
                 <form action="login.php" method="post">
                     <div class="form-group">
                         <input type="email" name="email" class="form-control" placeholder="Email" value="<?php echo htmlspecialchars($_POST['email'] ?? '', ENT_QUOTES);?>"> 
@@ -78,7 +78,7 @@
                     </div>
                     </br>
                     <div class="d-flex justify-content-center">
-                        <input class="btn btn-lg" type="submit" name="login" value="Login"></input>
+                        <input class="btn btn-submit btn-primary btn-lg" type="submit" name="login" value="Login"></input>
                     </div>
                     </br>
                         <?php if(array_key_exists("passwordValidation", $login_errors)){ $err = $login_errors["passwordValidation"]; print "<div class='text-center alert alert-danger'>$err</div>"; }?>

@@ -67,18 +67,20 @@
 </br>
     <div class="container">
         <div class="row">
-            <div class="d-flex justify-content-between display-6"> WiredIn 
+            <div class="d-flex justify-content-between display-6"> <b>WiredIn</b> 
                 <div> 
-                    <a href="login.php" class="btn btn-lg" role="button">Login</a>
+                    <a href="login.php" class="btn btn-submit btn-primary btn-lg" role="button">Login</a>
                 </div>
             </div>
         </div>
         <div class="row padding">
-            <div class="d-flex justify-content-center display-4">Welcome to the Community</div>
+            <div class="col d-flex justify-content-center">
+                <div class="display-4">Welcome to the Community</div>
+            </div>
         </div>
         </br>
-        <div class="row">
-            <div class="d-flex justify-content-center"> 
+        <div class="row justify-content-center">
+            <div class="col-4">
                 <form action="register.php" method="post">
                     <div class="form-group">
                         <input type="text" name="firstname" class="form-control" placeholder="First Name" value="<?php echo htmlspecialchars($_POST['firstname'] ?? '', ENT_QUOTES);?>"> 
@@ -101,7 +103,7 @@
                     </div>
                     </br>
                     <div class="d-flex justify-content-center">
-                        <input class="btn btn-lg" type="submit" name="submit" value="Register"></input>
+                        <input class="btn btn-submit btn-primary btn-lg" type="submit" name="submit" value="Register"></input>
                     </div>
                     </br>
                         <?php if(isset($success)){ print "<div class='alert alert-success'>$success</div>"; } ?>
@@ -112,12 +114,6 @@
                         <?php if(array_key_exists("passwordMatchValidation", $errors))print "<div class='text-center alert alert-danger'>" . $errors["passwordMatchValidation"] . "</div>"; ?>
                         <?php if(array_key_exists("emailExistsValidation", $errors))print "<div class='text-center alert alert-danger'>" . $errors["emailExistsValidation"] . "</div>"; ?>
                 </form>
-            </div>
-        </div>
-        </br>
-        <div class="row">
-            <div class="d-flex justify-content-center">
-
             </div>
         </div>
     </div>
