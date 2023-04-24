@@ -97,7 +97,7 @@
                     ?>
                 <h5>Vacancies </h5>
                 <div>
-                    <a class="mb-1 btn btn-sm btn-<?php if ($recommended) {print "outline-";} ?>primary" href="/index.php" name="options-outlined" autocomplete="off">Default</a>
+                    <a class="mb-1 btn btn-sm btn-<?php if ($recommended) {print "outline-";} ?>primary" href="/index.php" name="options-outlined" autocomplete="off">All</a>
                     <a class="mb-1 btn btn-sm btn-<?php if (!$recommended) {print "outline-";} ?>primary" href="/index.php?recommended=true" name="options-outlined" autocomplete="off">Recommended</a>
                 </div>
             </div>
@@ -200,3 +200,9 @@
         </div>
     </div>
 </div>
+
+<style>
+    a {
+        text-decoration: none;
+    }
+</style>
