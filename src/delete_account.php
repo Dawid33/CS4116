@@ -7,7 +7,7 @@
         die("Connection failure: " . $conn->connect_error);
     }
 
-    $sql_insert = "DELETE FROM users WHERE user_id='$user_id';";
+    $sql_insert = "DELETE FROM users WHERE user_id='$user_id'";
 
     if (($conn->query($sql_insert))) {
         header("Location: search.php?search-type=users");
