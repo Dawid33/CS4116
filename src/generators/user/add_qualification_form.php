@@ -15,7 +15,7 @@
             </div>
             <br>
             <input style="display:none" name="user_id" value="<?php echo $user_id ?>">
-            <button type="submit" class="btn btn-submit btn-primary"> Submit </button>
+            <button type="submit" class="btn btn-submit btn-sm btn-primary"> Submit </button>
         </form>
     </div>
 </div>

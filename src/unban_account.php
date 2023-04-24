@@ -1,6 +1,5 @@
 <?php
     $user_id = $_POST["user_id"];
-    $id = $_POST["user_skill_id"];
     
     $conn = new mysqli("db", "cs4116", "cs4116", "cs4116");
 
@@ -8,11 +7,9 @@
         die("Connection failure: " . $conn->connect_error);
     }
 
-    $sql_insert = "UPDATE users
-    SET is_banned='0'
-    WHERE user_id='$id';";
+    $sql_update = "UPDATE users SET is_banned='0' WHERE user_id='$user_id'";
 
-    if (($conn->query($sql_insert))) {
+    if (($conn->query($sql_update))) {
         header("Location: user.php?id=" . $user_id);
     }else {
         echo $conn->error;

@@ -10,7 +10,7 @@
     $sql_insert = "DELETE FROM users WHERE user_id='$user_id';";
 
     if (($conn->query($sql_insert))) {
-        header("Location: user.php?id=" . $user_id);
+        header("Location: search.php?search-type=users");
     }else {
         echo $conn->error;
     }
