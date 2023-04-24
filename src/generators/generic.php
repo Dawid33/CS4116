@@ -16,6 +16,7 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
                 <a class="navbar-brand" href="/index.php"><b>WiredIn</b></a>
+                <?php if($_SESSION["user_is_admin"]) print "<i>Admin User</i>"?>
                 <ul class="navbar-nav">
                     <li class="navbar-brand"><a class="nav-link active" href="/search.php">Search</a></li>
                     <li class="navbar-brand"><a class="nav-link active" href="/index.php">Home</a></li>

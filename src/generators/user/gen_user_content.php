@@ -243,7 +243,6 @@
                     include("delete_account_form.php");
                 }
             ?>
-            <br>
             <?php 
                 if ($_SESSION["user_is_admin"] == 1) {
                     include("ban_account_form.php");
