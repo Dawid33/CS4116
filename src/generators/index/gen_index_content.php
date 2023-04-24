@@ -104,20 +104,24 @@
             <div class="card-body">
                 <?php
                     if ($result) {
-                        while ($row = $result->fetch_assoc()) {
-                            $title = '<a href="/vacancy.php?id=' . $row['vacancy_id'] . '">' . $row['title'] . '</a>';
-                            $description = $row['description'];
+                        if (mysqli_num_rows($result) > 0)  {
+                            while ($row = $result->fetch_assoc()) {
+                                $title = '<a href="/vacancy.php?id=' . $row['vacancy_id'] . '">' . $row['title'] . '</a>';
+                                $description = $row['description'];
 
-                            $sql = "SELECT name, user_id FROM organisation WHERE org_id = '" . $row['org_id'] . "';";
-                            $org_name_result = mysqli_query($conn, $sql);
+                                $sql = "SELECT name, user_id FROM organisation WHERE org_id = '" . $row['org_id'] . "';";
+                                $org_name_result = mysqli_query($conn, $sql);
 
-                            if ($org_name_result) {
-                                $org_name = '<a href="/company.php?id=' . $row['org_id'] . '">' . $org_name_result->fetch_assoc()['name'] . '</a>';
-                                include('vacancy_card.php');
-                            } else {
-                                $failed = true;
-                                break;
+                                if ($org_name_result) {
+                                    $org_name = '<a href="/company.php?id=' . $row['org_id'] . '">' . $org_name_result->fetch_assoc()['name'] . '</a>';
+                                    include('vacancy_card.php');
+                                } else {
+                                    $failed = true;
+                                    break;
+                                }
                             }
+                        } else {
+                            echo "<div>No current recommendations for your skillset.</div>";
                         }
                     } else {
                         $failed = true;
