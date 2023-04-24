@@ -8,11 +8,20 @@
         $lastname =  mysqli_real_escape_string($conn, $_POST["lastname"]);
         $email = $_POST["email"];
         $password = $_POST["password"];
+        $confirm_password = $_POST["confirm_password"];
 
         // Check connection
         if ($conn->connect_error) {
             die("Connection failure: " . $conn->connect_error);
-        }      
+        }
+
+        if($password!=$confirm_password){
+            $errors["passwordMatchValidation"]="Passwords must match";
+        }
+        
+        if (preg_match('~[0-9]+~', $firstname) || preg_match('~[0-9]+~', $lastname)) {
+            $errors["numbersValidation"]="First Name and Last Name cannot contain numerical characters";
+        }
 
         if (empty($firstname) || empty($lastname)  || empty($email) || empty($password)) {
             $errors["fieldsValidation"]="All fields are required";
@@ -29,7 +38,7 @@
         $rowCount = mysqli_num_rows($result);
 
         if ($rowCount>0) {
-            $errors["fieldsValidation"]="Email already exists!";
+            $errors["emailExistsValidation"]="Email already exists!";
         }
 
         if (count($errors)<=0) {
@@ -37,7 +46,7 @@
             VALUES ('$firstname', '$lastname', '$email', '$password', false, false)";
 
             if (($conn->query($sql_insert))) {
-                $success = "You are registered successfully.";
+                $success = "You are registered successfully, please proceed to login.";
             }else {
                 echo $conn->error;
             }
@@ -82,9 +91,13 @@
                     <div class="form-group">
                         <input type="email" name="email" class="form-control" placeholder="Email" value="<?php echo htmlspecialchars($_POST['email'] ?? '', ENT_QUOTES);?>"> 
                     </div>
+                    <hr>
+                    <div class="form-group">
+                        <input type="password" name="password" class="form-control" placeholder="Password" value="<?php echo htmlspecialchars($_POST['password'] ?? '', ENT_QUOTES);?>"> 
+                    </div>
                     </br>
                     <div class="form-group">
-                        <input type="password" name="password" class="form-control" placeholder="Password"> 
+                        <input type="password" name="confirm_password" class="form-control" placeholder="Confirm Password"> 
                     </div>
                     </br>
                     <div class="d-flex justify-content-center">
@@ -92,9 +105,12 @@
                     </div>
                     </br>
                         <?php if(isset($success)){ print "<div class='alert alert-success'>$success</div>"; } ?>
-                        <?php if(array_key_exists("fieldsValidation", $errors)){ $err = $errors["fieldsValidation"]; print "<div class='text-center alert alert-danger'>$err</div>"; }?>
-                        <?php if(array_key_exists("passwordValidation", $errors)){ $err = $errors["passwordValidation"]; print "<div class='text-center alert alert-danger'>$err</div>"; }?>
-                        <?php if(array_key_exists("emailValidation", $errors)){ $err = $errors["emailValidation"]; print "<div class='text-center alert alert-danger>$err</div>"; }?>
+                        <?php if(array_key_exists("fieldsValidation", $errors)) print "<div class='text-center alert alert-danger'>" . $errors["fieldsValidation"] . "</div>"; ?>
+                        <?php if(array_key_exists("passwordValidation", $errors)) print "<div class='text-center alert alert-danger'>" . $errors["passwordValidation"] . "</div>"; ?>
+                        <?php if(array_key_exists("emailValidation", $errors)) print "<div class='text-center alert alert-danger'>" . $errors["emailValidation"] . "</div>"; ?>
+                        <?php if(array_key_exists("numbersValidation", $errors))print "<div class='text-center alert alert-danger'>" . $errors["numbersValidation"] . "</div>"; ?>
+                        <?php if(array_key_exists("passwordMatchValidation", $errors))print "<div class='text-center alert alert-danger'>" . $errors["passwordMatchValidation"] . "</div>"; ?>
+                        <?php if(array_key_exists("emailExistsValidation", $errors))print "<div class='text-center alert alert-danger'>" . $errors["emailExistsValidation"] . "</div>"; ?>
                 </form>
             </div>
         </div>
