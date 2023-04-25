@@ -25,6 +25,14 @@ $isOwner = 0;
         <div class="card mb-3">
             <div class="card-header d-flex justify-content-between">
                 <h5>Vacancy</h5>
+                <?php 
+                $orgSql = "SELECT org_id FROM vacancies WHERE vacancy_id = '$vacancy_id'";
+                $orgResult = $conn->query($orgSql);
+                while ($row = $orgResult->fetch_assoc()) {
+                    $org_id_for_button = $row["org_id"];
+                }
+                if($user_id == $_SESSION["user"] || $_SESSION["user_is_admin"] == 1) print "<a href='company.php?id=$org_id_for_button' type='button' class='mb-1 btn btn-submit btn-sm btn-primary'>View Organisation</a>";
+                ?>
             </div>
             <div class="card-body">
                 <h5 class="card-subtitle mb-2"><?php echo $title ?></h5>
