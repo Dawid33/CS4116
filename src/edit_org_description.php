@@ -41,7 +41,7 @@
         <div class="row">
             <div class="d-flex justify-content-between display-6"> WiredIn 
                 <div> 
-                    <a href="company.php?id=<?php print $current_organisation; ?>" class="btn btn-lg" role="button">Cancel</a>
+                    <a href="company.php?id=<?php print $current_organisation; ?>" class="btn-submit btn btn-primary btn-lg" role="button">Cancel</a>
                 </div>
             </div>
         </div>
@@ -57,7 +57,7 @@
                     </div>
                     </br>
                     <div class="d-flex justify-content-center">
-                        <input class="btn btn-lg" type="submit" name="save" value="Save"></input>
+                        <input class="btn-submit btn btn-primary btn-lg" type="submit" name="save" value="Save"></input>
                     </div>
                 </form>
             </div>
