@@ -67,7 +67,7 @@
         <div class="row">
             <div class="d-flex justify-content-between display-6"> <b>WiredIn</b>
                 <div> 
-                    <a href="user.php?id=<?php echo $current_user_id ?>" class="btn btn-lg" role="button">Cancel</a>
+                    <a href="user.php?id=<?php echo $current_user_id ?>" class="btn-submit btn btn-primary btn-lg" role="button">Cancel</a>
                 </div>
             </div>
         </div>
@@ -95,7 +95,7 @@
                     </div>
                     </br>
                     <div class="d-flex justify-content-center">
-                        <input class="btn btn-lg" type="submit" name="create" value="Create"></input>
+                        <input class="btn-submit btn btn-primary btn-lg" type="submit" name="create" value="Create"></input>
                     </div>
                     </br>
                     <?php if(array_key_exists("fieldsValidation", $create_org_errors)){ $err = $create_org_errors["fieldsValidation"]; print "<div class='text-center alert alert-danger'>$err</div>"; }?>
