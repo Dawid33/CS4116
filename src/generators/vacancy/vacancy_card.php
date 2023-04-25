@@ -31,7 +31,7 @@ $isOwner = 0;
                 while ($row = $orgResult->fetch_assoc()) {
                     $org_id_for_button = $row["org_id"];
                 }
-                if($user_id == $_SESSION["user"] || $_SESSION["user_is_admin"] == 1) print "<a href='company.php?id=$org_id_for_button' type='button' class='mb-1 btn btn-submit btn-sm btn-primary'>View Organisation</a>";
+                print "<a href='company.php?id=$org_id_for_button' type='button' class='mb-1 btn btn-submit btn-sm btn-primary'>View Organisation</a>";
                 ?>
             </div>
             <div class="card-body">
