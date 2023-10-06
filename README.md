@@ -1,4 +1,6 @@
-# WiredIn - http://cs4116.com
+# WiredIn 
+
+![screenshot](./screenshot.png)
 
 The Team:  
 Dawid Sobczak - 20273118  

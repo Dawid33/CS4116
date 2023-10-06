@@ -172,13 +172,6 @@ INSERT INTO vacancies (vacancy_id, org_id, status, title, description) VALUES (@
 
 -- Mr.Test's Friends
 
-SET @hjass_user_id := uuid();
-INSERT INTO users (user_id, email, password, first_name, last_name, is_admin) VALUES (@hjass_user_id, "hjass@example.com", "hjass", "Hugh", "Jass", false);
-SET @bdover_user_id := uuid();
-INSERT INTO users (user_id, email, password, first_name, last_name, is_admin, is_banned) VALUES (@bdover_user_id, "bdover@example.com", "bdover", "Ben", "Dover", false, 1);
-
-INSERT INTO connections (user_id_first, user_id_second) VALUES (@test_user_id, @hjass_user_id);
-INSERT INTO connections (user_id_first, user_id_second) VALUES (@test_user_id, @bdover_user_id);
 
 -- Skills
 
